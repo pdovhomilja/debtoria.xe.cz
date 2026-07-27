@@ -14,12 +14,16 @@ export default async function DebtorPortalLayout({
   const dict = await getDictionary(locale);
 
   return (
-    <div className="flex flex-1 flex-col">
-      <nav className="flex items-center justify-between gap-4 border-b p-4">
-        <span className="font-semibold">{t(dict, "common.appName", {}, locale)}</span>
-        <LanguageSwitcher />
+    <div className="flex flex-1 flex-col bg-paper text-ink">
+      <nav className="flex items-stretch border-b border-rule">
+        <span className="flex items-center px-5 py-4 font-display text-lg font-medium tracking-[-0.01em]">
+          {t(dict, "common.appName", {}, locale)}
+        </span>
+        <span className="ml-auto flex items-center border-l border-rule px-5">
+          <LanguageSwitcher />
+        </span>
       </nav>
-      <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col gap-6 p-4 sm:p-8">{children}</main>
+      <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-10 px-6 py-12">{children}</main>
     </div>
   );
 }

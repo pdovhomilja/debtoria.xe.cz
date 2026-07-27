@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Vymáhací agentury",
+    "appName": "Debtoria",
     "nav": {
       "dashboard": "Übersicht",
       "cases": "Fälle",
@@ -48,6 +48,13 @@
     "subtitle": "Verbindet Gläubiger mit lizenzierten Inkassobüros und hilft, Forderungen schneller einzutreiben.",
     "ctaCreditor": "Fall einreichen",
     "ctaAgency": "Als Inkassobüro beitreten",
+    "nav": {
+      "pricing": "Preise",
+      "trust": "Vertrauen"
+    },
+    "hero": {
+      "lifecycle": "Fallverlauf"
+    },
     "howItWorks": {
       "title": "So funktioniert es",
       "creditorTitle": "Für Gläubiger",
@@ -70,7 +77,10 @@
       "band1": "Kleinere Forderungen haben einen höheren Plattformanteil, damit sich die Bearbeitung für Inkassobüros lohnt.",
       "band2": "Mittelgroße Forderungen liegen bei einem moderaten Plattformanteil, abgestimmt auf die erwartete Beitreibungsquote.",
       "band3": "Größere Forderungen profitieren vom niedrigsten Plattformanteil dank Skaleneffekten.",
-      "disclaimer": "Genaue Staffeln und Sätze werden je Land konfiguriert und können sich ändern; den geltenden Satz finden Sie bei Ihrem Fall."
+      "disclaimer": "Genaue Staffeln und Sätze werden je Land konfiguriert und können sich ändern; den geltenden Satz finden Sie bei Ihrem Fall.",
+      "band1Label": "Kleinere Forderungen",
+      "band2Label": "Mittelgroße Forderungen",
+      "band3Label": "Größere Forderungen"
     },
     "trust": {
       "title": "Auf Vertrauen und Compliance ausgelegt",
@@ -86,6 +96,9 @@
     "footer": {
       "privacy": "Datenschutzerklärung",
       "sandboxDisclaimer": "Dies ist eine Sandbox-Umgebung. Signaturen, Zahlungen und Identitätsprüfungen nutzen simulierte Anbieter — es werden weder echtes Geld noch rechtsverbindliche Dokumente verarbeitet."
+    },
+    "finalCta": {
+      "title": "Einen Fall einzureichen dauert nur wenige Minuten."
     }
   },
   "debtor": {

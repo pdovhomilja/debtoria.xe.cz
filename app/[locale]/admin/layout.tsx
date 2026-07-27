@@ -6,6 +6,19 @@ import { t } from "@/lib/i18n/t";
 import { logoutAction } from "@/lib/auth/actions";
 import { LanguageSwitcher } from "@/components/language-switcher";
 
+const NAV = [
+  ["", "dashboard"],
+  ["/validation", "validation"],
+  ["/vetting", "vetting"],
+  ["/listings", "listings"],
+  ["/payments", "payments"],
+  ["/disputes", "disputes"],
+  ["/analytics", "analytics"],
+  ["/audit", "audit"],
+  ["/config", "config"],
+  ["/gdpr", "gdpr"],
+] as const;
+
 export default async function AdminLayout({
   children,
   params,
@@ -16,26 +29,33 @@ export default async function AdminLayout({
   const dict = await getDictionary(locale);
 
   return (
-    <div className="flex flex-1 flex-col">
-      <nav className="flex items-center justify-between gap-4 border-b p-4">
-        <span className="font-semibold">{t(dict, "admin.title", {}, locale)}</span>
-        <div className="flex flex-wrap items-center gap-4 text-sm">
-          <Link href={`/${locale}/admin`}>{t(dict, "admin.nav.dashboard", {}, locale)}</Link>
-          <Link href={`/${locale}/admin/validation`}>{t(dict, "admin.nav.validation", {}, locale)}</Link>
-          <Link href={`/${locale}/admin/vetting`}>{t(dict, "admin.nav.vetting", {}, locale)}</Link>
-          <Link href={`/${locale}/admin/listings`}>{t(dict, "admin.nav.listings", {}, locale)}</Link>
-          <Link href={`/${locale}/admin/payments`}>{t(dict, "admin.nav.payments", {}, locale)}</Link>
-          <Link href={`/${locale}/admin/disputes`}>{t(dict, "admin.nav.disputes", {}, locale)}</Link>
-          <Link href={`/${locale}/admin/analytics`}>{t(dict, "admin.nav.analytics", {}, locale)}</Link>
-          <Link href={`/${locale}/admin/audit`}>{t(dict, "admin.nav.audit", {}, locale)}</Link>
-          <Link href={`/${locale}/admin/config`}>{t(dict, "admin.nav.config", {}, locale)}</Link>
-          <Link href={`/${locale}/admin/gdpr`}>{t(dict, "admin.nav.gdpr", {}, locale)}</Link>
-          <LanguageSwitcher />
-          <form action={logoutAction}>
-            <input type="hidden" name="locale" value={locale} />
-            <button type="submit">{t(dict, "common.nav.logout", {}, locale)}</button>
-          </form>
+    <div className="flex flex-1 flex-col bg-paper text-ink">
+      <nav className="sticky top-0 z-40 flex items-stretch border-b border-rule bg-paper">
+        <Link
+          href={`/${locale}/admin`}
+          className="flex items-center px-5 py-4 font-display text-lg font-medium tracking-[-0.01em]"
+        >
+          {t(dict, "common.appName", {}, locale)}
+        </Link>
+        <span className="hidden items-center border-l border-rule px-4 font-mono text-[11px] uppercase tracking-[0.14em] text-ink/70 md:flex">
+          {t(dict, "admin.title", {}, locale)}
+        </span>
+        <div className="flex flex-1 items-center gap-x-5 overflow-x-auto whitespace-nowrap border-l border-rule px-4 text-[13px]">
+          {NAV.map(([path, key]) => (
+            <Link key={key} href={`/${locale}/admin${path}`} className="py-4 hover:text-accent">
+              {t(dict, `admin.nav.${key}`, {}, locale)}
+            </Link>
+          ))}
         </div>
+        <span className="hidden items-center border-l border-rule px-4 text-[12px] sm:flex">
+          <LanguageSwitcher />
+        </span>
+        <form action={logoutAction} className="flex items-stretch border-l border-rule">
+          <input type="hidden" name="locale" value={locale} />
+          <button type="submit" className="px-4 text-[13px] hover:text-accent">
+            {t(dict, "common.nav.logout", {}, locale)}
+          </button>
+        </form>
       </nav>
       <main className="flex flex-1 flex-col p-8">{children}</main>
     </div>

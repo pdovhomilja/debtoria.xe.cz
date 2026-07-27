@@ -46,34 +46,53 @@ export default async function AgencyListingDetailPage({
   const isOpen = listing.status === "open" && listing.closesAt > new Date();
 
   return (
-    <div className="flex flex-col gap-6">
-      <h1 className="text-2xl font-semibold">{view.caseReference}</h1>
+    <div className="flex flex-col gap-10">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3">
+        <h1 className="font-mono text-[clamp(28px,3.5vw,48px)] tracking-[-0.01em]">{view.caseReference}</h1>
+        <span className="font-mono text-[clamp(18px,2vw,27px)]">
+          {view.amountBand} {view.currency}
+        </span>
+      </div>
 
       <Card>
-        <dl className="grid grid-cols-2 gap-2 text-sm">
-          <dt className="text-zinc-500">{t(dict, "agency.listing.amountBand", {}, locale)}</dt>
-          <dd>
+        <dl className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-8 gap-y-3 text-sm">
+          <dt className="text-[11px] uppercase tracking-[0.14em] text-ink/70">
+            {t(dict, "agency.listing.amountBand", {}, locale)}
+          </dt>
+          <dd className="font-mono">
             {view.amountBand} {view.currency}
           </dd>
-          <dt className="text-zinc-500">{t(dict, "agency.listing.debtorType", {}, locale)}</dt>
+          <dt className="text-[11px] uppercase tracking-[0.14em] text-ink/70">
+            {t(dict, "agency.listing.debtorType", {}, locale)}
+          </dt>
           <dd>
             {view.debtor.type} ({view.debtor.nameInitials}, {view.debtor.countryCode})
           </dd>
-          <dt className="text-zinc-500">{t(dict, "agency.listing.region", {}, locale)}</dt>
+          <dt className="text-[11px] uppercase tracking-[0.14em] text-ink/70">
+            {t(dict, "agency.listing.region", {}, locale)}
+          </dt>
           <dd>{view.debtor.region ?? "—"}</dd>
-          <dt className="text-zinc-500">{t(dict, "agency.listing.closesAt", {}, locale)}</dt>
-          <dd>{view.closesAt.toISOString()}</dd>
-          <dt className="text-zinc-500">{t(dict, "agency.listing.evidence", {}, locale)}</dt>
-          <dd>{view.evidenceCount}</dd>
-          <dt className="text-zinc-500">{t(dict, "agency.listing.includeLegal", {}, locale)}</dt>
-          <dd>{view.includeLegal ? "✓" : "—"}</dd>
+          <dt className="text-[11px] uppercase tracking-[0.14em] text-ink/70">
+            {t(dict, "agency.listing.closesAt", {}, locale)}
+          </dt>
+          <dd className="font-mono">{view.closesAt.toISOString()}</dd>
+          <dt className="text-[11px] uppercase tracking-[0.14em] text-ink/70">
+            {t(dict, "agency.listing.evidence", {}, locale)}
+          </dt>
+          <dd className="font-mono">{view.evidenceCount}</dd>
+          <dt className="text-[11px] uppercase tracking-[0.14em] text-ink/70">
+            {t(dict, "agency.listing.includeLegal", {}, locale)}
+          </dt>
+          <dd className="font-mono">{view.includeLegal ? "✓" : "—"}</dd>
         </dl>
       </Card>
 
       {view.myBid ? (
         <Card>
-          <p className="font-medium">{t(dict, "agency.bidForm.myCurrentBid", {}, locale)}</p>
-          <p className="text-sm text-zinc-600">
+          <p className="text-[11px] uppercase tracking-[0.14em] text-ink/70">
+            {t(dict, "agency.bidForm.myCurrentBid", {}, locale)}
+          </p>
+          <p className="mt-2 font-mono text-sm">
             {view.myBid.successFeePct.toString()}% · {view.myBid.scope}
             {view.myBid.estimatedDays ? ` · ${view.myBid.estimatedDays}d` : ""}
           </p>
@@ -81,68 +100,88 @@ export default async function AgencyListingDetailPage({
       ) : null}
 
       {isOpen ? (
-        <Card>
-          <h2 className="mb-2 font-medium">{t(dict, "agency.bidForm.title", {}, locale)}</h2>
-          <form action={placeBidAction} className="flex flex-col gap-3">
+        <section>
+          <div className="flex items-center justify-between border-b border-ink pb-2 font-mono text-[11px] uppercase tracking-[0.14em]">
+            <span>{t(dict, "agency.bidForm.title", {}, locale)}</span>
+          </div>
+          <form action={placeBidAction} className="flex flex-col gap-6 pt-4">
             <input type="hidden" name="listingId" value={listing.id} />
             <input type="hidden" name="locale" value={locale} />
 
-            <label className="flex flex-col gap-1 text-sm">
-              {t(dict, "agency.bidForm.successFeePct", {}, locale)}
+            <label className="flex flex-col gap-2">
+              <span className="text-[11px] uppercase tracking-[0.14em]">
+                {t(dict, "agency.bidForm.successFeePct", {}, locale)}
+              </span>
               <input
                 type="text"
                 name="successFeePct"
                 required
                 defaultValue={view.myBid?.successFeePct.toString()}
-                className="rounded border p-2"
+                className="w-full border-b border-rule bg-transparent pb-2 font-mono text-sm outline-none focus:border-accent"
               />
             </label>
 
-            <label className="flex flex-col gap-1 text-sm">
-              {t(dict, "agency.bidForm.fixedFees", {}, locale)}
+            <label className="flex flex-col gap-2">
+              <span className="text-[11px] uppercase tracking-[0.14em]">
+                {t(dict, "agency.bidForm.fixedFees", {}, locale)}
+              </span>
               <input
                 type="text"
                 name="fixedFees"
                 defaultValue={view.myBid?.fixedFees?.toString()}
-                className="rounded border p-2"
+                className="w-full border-b border-rule bg-transparent pb-2 font-mono text-sm outline-none focus:border-accent"
               />
             </label>
 
-            <label className="flex flex-col gap-1 text-sm">
-              {t(dict, "agency.bidForm.scope", {}, locale)}
-              <select name="scope" defaultValue={view.myBid?.scope ?? "amicable"} className="rounded border p-2">
+            <label className="flex flex-col gap-2">
+              <span className="text-[11px] uppercase tracking-[0.14em]">
+                {t(dict, "agency.bidForm.scope", {}, locale)}
+              </span>
+              <select
+                name="scope"
+                defaultValue={view.myBid?.scope ?? "amicable"}
+                className="w-full border-b border-rule bg-transparent pb-2 text-sm outline-none focus:border-accent"
+              >
                 <option value="amicable">{t(dict, "agency.bidForm.scopeAmicable", {}, locale)}</option>
                 <option value="amicable_plus_legal">{t(dict, "agency.bidForm.scopeLegal", {}, locale)}</option>
               </select>
             </label>
 
-            <label className="flex flex-col gap-1 text-sm">
-              {t(dict, "agency.bidForm.estimatedDays", {}, locale)}
+            <label className="flex flex-col gap-2">
+              <span className="text-[11px] uppercase tracking-[0.14em]">
+                {t(dict, "agency.bidForm.estimatedDays", {}, locale)}
+              </span>
               <input
                 type="number"
                 name="estimatedDays"
                 min={1}
                 max={365}
                 defaultValue={view.myBid?.estimatedDays ?? undefined}
-                className="rounded border p-2"
+                className="w-full border-b border-rule bg-transparent pb-2 font-mono text-sm outline-none focus:border-accent"
               />
             </label>
 
-            <label className="flex flex-col gap-1 text-sm">
-              {t(dict, "agency.bidForm.notes", {}, locale)}
+            <label className="flex flex-col gap-2">
+              <span className="text-[11px] uppercase tracking-[0.14em]">
+                {t(dict, "agency.bidForm.notes", {}, locale)}
+              </span>
               <textarea
                 name="notes"
                 maxLength={2000}
                 defaultValue={view.myBid?.notes ?? undefined}
-                className="rounded border p-2"
+                className="w-full rounded-[5px] border border-rule bg-transparent p-3 text-sm outline-none focus:border-accent"
               />
             </label>
 
-            <button type="submit" className="rounded border px-3 py-2 font-medium">
-              {t(dict, "agency.bidForm.submit", {}, locale)}
+            <button
+              type="submit"
+              className="inline-flex items-center gap-3 self-start rounded-[32px] bg-accent px-5 py-2 text-[13px] font-medium text-white transition-colors hover:bg-accent-hover disabled:opacity-60"
+            >
+              <span>{t(dict, "agency.bidForm.submit", {}, locale)}</span>
+              <span aria-hidden>→</span>
             </button>
           </form>
-        </Card>
+        </section>
       ) : null}
     </div>
   );

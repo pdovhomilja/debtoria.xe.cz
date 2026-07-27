@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Vymáhací agentury",
+    "appName": "Debtoria",
     "nav": {
       "dashboard": "Panel",
       "cases": "Sprawy",
@@ -48,6 +48,13 @@
     "subtitle": "Łączymy wierzycieli z licencjonowanymi firmami windykacyjnymi i pomagamy szybciej odzyskać należności.",
     "ctaCreditor": "Zgłoś sprawę",
     "ctaAgency": "Dołącz jako agencja",
+    "nav": {
+      "pricing": "Cennik",
+      "trust": "Zaufanie"
+    },
+    "hero": {
+      "lifecycle": "Przebieg sprawy"
+    },
     "howItWorks": {
       "title": "Jak to działa",
       "creditorTitle": "Dla wierzycieli",
@@ -70,7 +77,10 @@
       "band1": "Mniejsze roszczenia mają wyższy procent opłaty platformy, aby obsługa opłacała się agencjom.",
       "band2": "Roszczenia średniej wielkości rozliczane są przy umiarkowanym procencie opłaty, dopasowanym do oczekiwanej skuteczności odzyskania.",
       "band3": "Większe roszczenia korzystają z najniższego procentu opłaty platformy dzięki efektowi skali.",
-      "disclaimer": "Dokładne progi i stawki są konfigurowane dla każdego kraju i mogą się zmieniać; obowiązującą stawkę znajdziesz przy swojej sprawie."
+      "disclaimer": "Dokładne progi i stawki są konfigurowane dla każdego kraju i mogą się zmieniać; obowiązującą stawkę znajdziesz przy swojej sprawie.",
+      "band1Label": "Mniejsze roszczenia",
+      "band2Label": "Roszczenia średniej wielkości",
+      "band3Label": "Większe roszczenia"
     },
     "trust": {
       "title": "Zbudowane na zaufaniu i zgodności z przepisami",
@@ -86,6 +96,9 @@
     "footer": {
       "privacy": "Informacja o prywatności",
       "sandboxDisclaimer": "To środowisko testowe (sandbox). Podpisy, płatności i weryfikacja tożsamości korzystają z symulowanych dostawców — nie są przetwarzane prawdziwe pieniądze ani dokumenty prawne."
+    },
+    "finalCta": {
+      "title": "Zgłoszenie sprawy zajmuje kilka minut."
     }
   },
   "debtor": {

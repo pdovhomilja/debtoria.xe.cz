@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { t } from "@/lib/i18n/t";
 import { fmtDate, fmtMoney } from "@/lib/i18n/format";
 import { debtorView } from "@/lib/services/debtor";
-import { Card, Badge } from "@/components/ui";
+import { Card, Badge, Table } from "@/components/ui";
 
 export default async function DebtorPortalPage({
   params,
@@ -21,8 +21,10 @@ export default async function DebtorPortalPage({
   if (!view) {
     return (
       <Card>
-        <h1 className="mb-2 text-xl font-semibold">{t(dict, "debtor.invalidToken.title", {}, locale)}</h1>
-        <p className="text-sm text-zinc-600">{t(dict, "debtor.invalidToken.body", {}, locale)}</p>
+        <h1 className="mb-2 font-display text-xl font-medium tracking-[-0.01em]">
+          {t(dict, "debtor.invalidToken.title", {}, locale)}
+        </h1>
+        <p className="text-sm text-ink/70">{t(dict, "debtor.invalidToken.body", {}, locale)}</p>
       </Card>
     );
   }
@@ -34,114 +36,162 @@ export default async function DebtorPortalPage({
     settlementOffer?.signatureReq && settlementOffer.signatureReq.status === "PENDING";
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">{t(dict, "debtor.title", {}, locale)}</h1>
+    <div className="flex flex-col gap-10">
+      <div className="flex flex-wrap items-baseline justify-between gap-4">
+        <h1 className="font-display text-[clamp(36px,5vw,64px)] font-medium leading-[0.9] tracking-[-0.02em]">
+          {t(dict, "debtor.title", {}, locale)}.
+        </h1>
         <Badge tone={statusTone}>{t(dict, `debtor.status.${claim.status}`, {}, locale)}</Badge>
       </div>
 
       {sp.paid === "1" ? (
-        <div className="rounded border border-green-600 bg-green-50 p-3 text-sm text-green-800">
+        <p className="border-b border-rule pb-3 text-sm text-signal-green">
           {t(dict, "debtor.banners.paid", {}, locale)}
-        </div>
+        </p>
       ) : null}
       {sp.disputed === "1" ? (
-        <div className="rounded border border-amber-600 bg-amber-50 p-3 text-sm text-amber-800">
+        <p className="border-b border-rule pb-3 text-sm text-signal-green">
           {t(dict, "debtor.banners.disputed", {}, locale)}
-        </div>
+        </p>
       ) : null}
 
-      <Card>
-        <dl className="grid grid-cols-2 gap-2 text-sm">
-          <dt className="text-zinc-500">{t(dict, "debtor.claim.creditor", {}, locale)}</dt>
-          <dd>{claim.creditorName}</dd>
-          <dt className="text-zinc-500">{t(dict, "debtor.claim.reference", {}, locale)}</dt>
-          <dd>{claim.reference}</dd>
-          <dt className="text-zinc-500">{t(dict, "debtor.claim.amount", {}, locale)}</dt>
-          <dd>{fmtMoney(claim.amount, claim.currency, locale)}</dd>
-          <dt className="text-zinc-500">{t(dict, "debtor.claim.totalPaid", {}, locale)}</dt>
-          <dd>{fmtMoney(claim.totalPaid, claim.currency, locale)}</dd>
-          <dt className="text-zinc-500">{t(dict, "debtor.claim.remaining", {}, locale)}</dt>
-          <dd className="font-semibold">{fmtMoney(claim.remaining, claim.currency, locale)}</dd>
-          {claim.dueDate ? (
-            <>
-              <dt className="text-zinc-500">{t(dict, "debtor.claim.dueDate", {}, locale)}</dt>
-              <dd>{fmtDate(new Date(claim.dueDate), locale)}</dd>
-            </>
-          ) : null}
-          {claim.description ? (
-            <>
-              <dt className="text-zinc-500">{t(dict, "debtor.claim.description", {}, locale)}</dt>
-              <dd>{claim.description}</dd>
-            </>
-          ) : null}
-        </dl>
-      </Card>
+      <div>
+        <p className="text-[11px] uppercase tracking-[0.14em] text-ink/70">
+          {t(dict, "debtor.claim.remaining", {}, locale)}
+        </p>
+        <p className="font-mono text-[clamp(32px,5vw,56px)] leading-none">
+          {fmtMoney(claim.remaining, claim.currency, locale)}
+        </p>
+      </div>
 
-      <Card>
-        <h2 className="mb-2 font-medium">{t(dict, "debtor.payments.title", {}, locale)}</h2>
+      <dl className="rounded-[5px] bg-navy p-6 text-white">
+        <div className="flex justify-between gap-4 border-b border-white/20 py-2 font-mono text-sm">
+          <dt className="text-[11px] uppercase tracking-[0.1em] text-white/70">
+            {t(dict, "debtor.claim.creditor", {}, locale)}
+          </dt>
+          <dd className="text-right">{claim.creditorName}</dd>
+        </div>
+        <div className="flex justify-between gap-4 border-b border-white/20 py-2 font-mono text-sm">
+          <dt className="text-[11px] uppercase tracking-[0.1em] text-white/70">
+            {t(dict, "debtor.claim.reference", {}, locale)}
+          </dt>
+          <dd className="text-right">{claim.reference}</dd>
+        </div>
+        <div className="flex justify-between gap-4 border-b border-white/20 py-2 font-mono text-sm">
+          <dt className="text-[11px] uppercase tracking-[0.1em] text-white/70">
+            {t(dict, "debtor.claim.amount", {}, locale)}
+          </dt>
+          <dd className="text-right">{fmtMoney(claim.amount, claim.currency, locale)}</dd>
+        </div>
+        <div className="flex justify-between gap-4 border-b border-white/20 py-2 font-mono text-sm last:border-0">
+          <dt className="text-[11px] uppercase tracking-[0.1em] text-white/70">
+            {t(dict, "debtor.claim.totalPaid", {}, locale)}
+          </dt>
+          <dd className="text-right">{fmtMoney(claim.totalPaid, claim.currency, locale)}</dd>
+        </div>
+        {claim.dueDate ? (
+          <div className="flex justify-between gap-4 border-b border-white/20 py-2 font-mono text-sm last:border-0">
+            <dt className="text-[11px] uppercase tracking-[0.1em] text-white/70">
+              {t(dict, "debtor.claim.dueDate", {}, locale)}
+            </dt>
+            <dd className="text-right">{fmtDate(new Date(claim.dueDate), locale)}</dd>
+          </div>
+        ) : null}
+        {claim.description ? (
+          <div className="flex justify-between gap-4 py-2 font-mono text-sm">
+            <dt className="text-[11px] uppercase tracking-[0.1em] text-white/70">
+              {t(dict, "debtor.claim.description", {}, locale)}
+            </dt>
+            <dd className="text-right">{claim.description}</dd>
+          </div>
+        ) : null}
+      </dl>
+
+      <section>
+        <div className="flex items-center justify-between border-b border-ink pb-2 font-mono text-[11px] uppercase tracking-[0.14em]">
+          <span>{t(dict, "debtor.payments.title", {}, locale)}</span>
+          <span aria-hidden>({payments.length})</span>
+        </div>
         {payments.length === 0 ? (
-          <p className="text-sm text-zinc-600">{t(dict, "debtor.payments.empty", {}, locale)}</p>
+          <p className="py-3 text-sm text-ink/70">{t(dict, "debtor.payments.empty", {}, locale)}</p>
         ) : (
-          <table className="w-full border-collapse text-left text-sm">
+          <Table>
             <thead>
               <tr>
-                <th className="pb-1">{t(dict, "debtor.payments.date", {}, locale)}</th>
-                <th className="pb-1">{t(dict, "debtor.payments.amount", {}, locale)}</th>
-                <th className="pb-1">{t(dict, "debtor.payments.method", {}, locale)}</th>
+                <th>{t(dict, "debtor.payments.date", {}, locale)}</th>
+                <th>{t(dict, "debtor.payments.amount", {}, locale)}</th>
+                <th>{t(dict, "debtor.payments.method", {}, locale)}</th>
               </tr>
             </thead>
             <tbody>
               {payments.map((p, i) => (
                 <tr key={i}>
-                  <td>{p.receivedAt ? fmtDate(p.receivedAt, locale) : "—"}</td>
-                  <td>{fmtMoney(p.amount, claim.currency, locale)}</td>
+                  <td className="font-mono">{p.receivedAt ? fmtDate(p.receivedAt, locale) : "—"}</td>
+                  <td className="font-mono">{fmtMoney(p.amount, claim.currency, locale)}</td>
                   <td>{p.method}</td>
                 </tr>
               ))}
             </tbody>
-          </table>
+          </Table>
         )}
-      </Card>
+      </section>
 
       {claim.status === "open" ? (
-        <Card>
-          <div className="flex flex-wrap gap-3">
-            <Link href={`/${locale}/d/${token}/pay`} className="rounded border px-3 py-2 text-sm font-medium">
-              {t(dict, "debtor.actions.pay", {}, locale)}
-            </Link>
-            {pendingSettlement ? (
-              <Link
-                href={`/${locale}/sign/${settlementOffer!.signatureReq!.id}?dt=${token}`}
-                className="rounded border px-3 py-2 text-sm font-medium"
-              >
-                {t(dict, "debtor.actions.continueSigning", {}, locale)}
-              </Link>
-            ) : (
-              <Link href={`/${locale}/d/${token}/settle`} className="rounded border px-3 py-2 text-sm font-medium">
-                {t(dict, "debtor.actions.requestSettlement", {}, locale)}
-              </Link>
-            )}
+        <div className="flex flex-wrap items-center gap-3">
+          <Link
+            href={`/${locale}/d/${token}/pay`}
+            className="inline-flex items-center gap-3 rounded-[32px] bg-accent px-5 py-2 text-[13px] font-medium text-white transition-colors hover:bg-accent-hover"
+          >
+            <span>{t(dict, "debtor.actions.pay", {}, locale)}</span>
+            <span aria-hidden>→</span>
+          </Link>
+          {pendingSettlement ? (
             <Link
-              href={`/${locale}/d/${token}/dispute`}
-              className="rounded border border-red-600 px-3 py-2 text-sm font-medium text-red-700"
+              href={`/${locale}/sign/${settlementOffer!.signatureReq!.id}?dt=${token}`}
+              className="inline-flex items-center gap-3 rounded-[32px] border border-ink px-5 py-2 text-[13px] transition-colors hover:bg-ink hover:text-paper"
             >
-              {t(dict, "debtor.actions.dispute", {}, locale)}
+              <span>{t(dict, "debtor.actions.continueSigning", {}, locale)}</span>
+              <span aria-hidden>→</span>
             </Link>
-          </div>
-        </Card>
+          ) : (
+            <Link
+              href={`/${locale}/d/${token}/settle`}
+              className="inline-flex items-center gap-3 rounded-[32px] border border-ink px-5 py-2 text-[13px] transition-colors hover:bg-ink hover:text-paper"
+            >
+              <span>{t(dict, "debtor.actions.requestSettlement", {}, locale)}</span>
+              <span aria-hidden>→</span>
+            </Link>
+          )}
+          <Link
+            href={`/${locale}/d/${token}/dispute`}
+            className="inline-flex items-center gap-3 rounded-[32px] border border-ink px-5 py-2 text-[13px] transition-colors hover:bg-ink hover:text-paper"
+          >
+            <span>{t(dict, "debtor.actions.dispute", {}, locale)}</span>
+            <span aria-hidden>→</span>
+          </Link>
+        </div>
       ) : null}
 
       {claim.agencyContact ? (
-        <Card>
-          <h2 className="mb-2 font-medium">{t(dict, "debtor.agency.title", {}, locale)}</h2>
-          <dl className="grid grid-cols-2 gap-2 text-sm">
-            <dt className="text-zinc-500">{t(dict, "debtor.agency.name", {}, locale)}</dt>
-            <dd>{claim.agencyContact.name}</dd>
-            <dt className="text-zinc-500">{t(dict, "debtor.agency.email", {}, locale)}</dt>
-            <dd>{claim.agencyContact.email}</dd>
+        <section>
+          <div className="flex items-center justify-between border-b border-ink pb-2 font-mono text-[11px] uppercase tracking-[0.14em]">
+            <span>{t(dict, "debtor.agency.title", {}, locale)}</span>
+          </div>
+          <dl className="text-sm">
+            <div className="flex justify-between gap-4 border-b border-rule py-3">
+              <dt className="text-[11px] uppercase tracking-[0.14em] text-ink/70">
+                {t(dict, "debtor.agency.name", {}, locale)}
+              </dt>
+              <dd className="text-right">{claim.agencyContact.name}</dd>
+            </div>
+            <div className="flex justify-between gap-4 border-b border-rule py-3">
+              <dt className="text-[11px] uppercase tracking-[0.14em] text-ink/70">
+                {t(dict, "debtor.agency.email", {}, locale)}
+              </dt>
+              <dd className="text-right font-mono">{claim.agencyContact.email}</dd>
+            </div>
           </dl>
-        </Card>
+        </section>
       ) : null}
     </div>
   );

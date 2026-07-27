@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Vymáhací agentury",
+    "appName": "Debtoria",
     "nav": {
       "dashboard": "Áttekintés",
       "cases": "Ügyek",
@@ -48,6 +48,13 @@
     "subtitle": "Összekötjük a hitelezőket engedéllyel rendelkező behajtó ügynökségekkel, hogy gyorsabban visszakapják járandóságukat.",
     "ctaCreditor": "Ügy beküldése",
     "ctaAgency": "Csatlakozás ügynökségként",
+    "nav": {
+      "pricing": "Árak",
+      "trust": "Bizalom"
+    },
+    "hero": {
+      "lifecycle": "Az ügy folyamata"
+    },
     "howItWorks": {
       "title": "Hogyan működik",
       "creditorTitle": "Hitelezőknek",
@@ -70,7 +77,10 @@
       "band1": "A kisebb követelések magasabb platformdíj-százalékkal járnak, hogy az ügynökségeknek megérje foglalkozni velük.",
       "band2": "A közepes méretű követelések mérsékelt platformdíj-százalékkal rendelkeznek, a várható behajtási arányhoz igazítva.",
       "band3": "A nagyobb követelések a legalacsonyabb platformdíj-százalékból profitálnak a méretgazdaságosság miatt.",
-      "disclaimer": "A pontos sávok és díjak országonként eltérőek, és változhatnak; az ügyére vonatkozó díjat az ügy oldalán találja."
+      "disclaimer": "A pontos sávok és díjak országonként eltérőek, és változhatnak; az ügyére vonatkozó díjat az ügy oldalán találja.",
+      "band1Label": "Kisebb követelések",
+      "band2Label": "Közepes méretű követelések",
+      "band3Label": "Nagyobb követelések"
     },
     "trust": {
       "title": "Bizalomra és megfelelőségre épülve",
@@ -86,6 +96,9 @@
     "footer": {
       "privacy": "Adatvédelmi tájékoztató",
       "sandboxDisclaimer": "Ez egy sandbox (teszt) környezet. Az aláírások, fizetések és személyazonosság-ellenőrzések szimulált szolgáltatókat használnak — valódi pénz vagy jogi dokumentum nem kerül feldolgozásra."
+    },
+    "finalCta": {
+      "title": "Egy ügy beadása csak néhány percet vesz igénybe."
     }
   },
   "debtor": {

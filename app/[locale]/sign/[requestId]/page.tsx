@@ -64,45 +64,82 @@ export default async function SignPage({
   const allSigned = request.status === "SIGNED";
 
   return (
-    <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-6 p-8">
-      <h1 className="text-2xl font-semibold">{t(dict, "sign.title", {}, locale)}</h1>
+    <div className="flex flex-1 flex-col bg-paper text-ink">
+      <div className="mx-auto flex w-full max-w-4xl flex-1 flex-col gap-10 px-6 py-16">
+        <h1 className="font-display text-[clamp(40px,5vw,72px)] font-medium leading-[0.85] tracking-[-0.03em]">
+          {t(dict, "sign.title", {}, locale)}.
+        </h1>
 
-      <iframe srcDoc={html} sandbox="" className="h-[32rem] w-full rounded border" />
-
-      <section>
-        <h2 className="mb-2 font-medium">{t(dict, "sign.signers", {}, locale)}</h2>
-        <ul className="flex flex-col gap-1">
-          {request.signatures.map((s) => (
-            <li key={s.id}>
-              {s.signerRole}:{" "}
-              {s.status === "SIGNED" ? t(dict, "sign.signedAs", {}, locale) : s.status}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {allSigned ? (
-        <div className="rounded border border-green-600 p-4">
-          <p>{t(dict, "sign.allSigned", {}, locale)}</p>
-          {request.document.signedObjectKey ? (
-            <a className="underline" href={`/api/files/${request.document.signedObjectKey}`}>
-              {t(dict, "sign.viewSigned", {}, locale)}
-            </a>
-          ) : null}
+        <div className="flex flex-col gap-4 rounded-[5px] bg-warm p-5">
+          <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink/70">
+            {requestId}
+          </span>
+          <iframe srcDoc={html} sandbox="" className="h-[32rem] w-full rounded-[5px] bg-paper" />
         </div>
-      ) : viewerRole ? (
-        <form action={signAction}>
-          <input type="hidden" name="requestId" value={requestId} />
-          <input type="hidden" name="signerRole" value={viewerRole} />
-          <input type="hidden" name="locale" value={locale} />
-          {dt ? <input type="hidden" name="dt" value={dt} /> : null}
-          <button type="submit" className="rounded border px-3 py-2 font-medium">
-            {t(dict, "sign.signButton", {}, locale)}
-          </button>
-        </form>
-      ) : (
-        <p className="text-zinc-600">{t(dict, "sign.notYourTurn", {}, locale)}</p>
-      )}
+
+        <section>
+          <div className="flex items-center justify-between border-b border-ink pb-2 font-mono text-[11px] uppercase tracking-[0.14em]">
+            <span>{t(dict, "sign.signers", {}, locale)}</span>
+            <span aria-hidden>({request.signatures.length})</span>
+          </div>
+          <ul>
+            {request.signatures.map((s, i) => (
+              <li
+                key={s.id}
+                className="grid grid-cols-[3.5rem_minmax(0,1fr)_auto] items-center gap-4 border-b border-rule py-4"
+              >
+                <span className="font-mono text-[11px] tracking-[0.06em] text-ink/40" aria-hidden>
+                  0{i + 1} /
+                </span>
+                <span className="font-mono text-[13px] uppercase tracking-[0.1em]">
+                  {s.signerRole}
+                </span>
+                <span className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.1em]">
+                  <span
+                    className={`size-2 shrink-0 ${s.status === "SIGNED" ? "bg-signal-green" : "bg-signal-yellow"}`}
+                    aria-hidden
+                  />
+                  {s.status === "SIGNED" ? t(dict, "sign.signedAs", {}, locale) : s.status}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {allSigned ? (
+          <div className="flex flex-col items-start gap-4 rounded-[5px] bg-warm p-5">
+            <p className="flex items-center gap-2.5">
+              <span className="size-2 shrink-0 bg-signal-green" aria-hidden />
+              {t(dict, "sign.allSigned", {}, locale)}
+            </p>
+            {request.document.signedObjectKey ? (
+              <a
+                href={`/api/files/${request.document.signedObjectKey}`}
+                className="inline-flex items-center gap-3 rounded-[32px] border border-ink px-5 py-2 text-[13px] transition-colors hover:bg-ink hover:text-paper"
+              >
+                <span>{t(dict, "sign.viewSigned", {}, locale)}</span>
+                <span aria-hidden>→</span>
+              </a>
+            ) : null}
+          </div>
+        ) : viewerRole ? (
+          <form action={signAction}>
+            <input type="hidden" name="requestId" value={requestId} />
+            <input type="hidden" name="signerRole" value={viewerRole} />
+            <input type="hidden" name="locale" value={locale} />
+            {dt ? <input type="hidden" name="dt" value={dt} /> : null}
+            <button
+              type="submit"
+              className="inline-flex items-center gap-3 rounded-[32px] bg-accent px-5 py-2 text-[13px] font-medium text-white transition-colors hover:bg-accent-hover disabled:opacity-60"
+            >
+              <span>{t(dict, "sign.signButton", {}, locale)}</span>
+              <span aria-hidden>→</span>
+            </button>
+          </form>
+        ) : (
+          <p className="text-[12px] text-ink/70">{t(dict, "sign.notYourTurn", {}, locale)}</p>
+        )}
+      </div>
     </div>
   );
 }

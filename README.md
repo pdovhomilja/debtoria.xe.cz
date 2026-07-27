@@ -34,7 +34,7 @@ loop — submit → sign → bid → award → collect → settle — in Czech a
 
 ```bash
 cp .env.example .env      # then fill in every <placeholder> value
-docker compose up -d      # Postgres (5434) + MinIO (9000/9001) — reads credentials from .env
+docker compose up -d      # Postgres (5464) + MinIO (9000/9001) — reads credentials from .env
 pnpm install
 pnpm db:migrate
 pnpm db:seed
@@ -43,7 +43,7 @@ pnpm dev                  # http://localhost:3000
 
 All credentials (database, MinIO, session secret, seeded demo passwords) live only in your
 gitignored `.env` — `.env.example` documents the keys with placeholders. `DATABASE_URL` points at
-`localhost:5434` — chosen because 5432/5433 are often already taken by other local projects.
+`localhost:5464` — chosen because 5432/5433 are often already taken by other local projects.
 
 ## Demo accounts
 

@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Vymáhací agentury",
+    "appName": "Debtoria",
     "nav": {
       "dashboard": "Dashboard",
       "cases": "Cases",
@@ -48,6 +48,13 @@
     "subtitle": "Connect creditors with licensed collection agencies and recover what you're owed, faster.",
     "ctaCreditor": "Submit a case",
     "ctaAgency": "Join as an agency",
+    "nav": {
+      "pricing": "Pricing",
+      "trust": "Trust"
+    },
+    "hero": {
+      "lifecycle": "Case lifecycle"
+    },
     "howItWorks": {
       "title": "How it works",
       "creditorTitle": "For creditors",
@@ -70,7 +77,10 @@
       "band1": "Smaller claims carry a higher platform percentage to keep agency economics viable.",
       "band2": "Mid-sized claims settle at a moderate platform percentage, balanced against expected recovery.",
       "band3": "Larger claims benefit from the lowest platform percentage, reflecting economies of scale.",
-      "disclaimer": "Exact bands and rates are configured per country and may change; see your case for the rate that applies."
+      "disclaimer": "Exact bands and rates are configured per country and may change; see your case for the rate that applies.",
+      "band1Label": "Smaller claims",
+      "band2Label": "Mid-sized claims",
+      "band3Label": "Larger claims"
     },
     "trust": {
       "title": "Built for trust and compliance",
@@ -86,6 +96,9 @@
     "footer": {
       "privacy": "Privacy notice",
       "sandboxDisclaimer": "This is a sandbox environment. Signatures, payments, and identity checks use simulated providers — no real money or legal documents are processed."
+    },
+    "finalCta": {
+      "title": "Submitting a case takes a few minutes."
     }
   },
   "auth": {
@@ -104,7 +117,8 @@
     "emailTaken": "An account with this email already exists.",
     "invalidCredentials": "Invalid email or password.",
     "rateLimited": "Too many failed attempts. Try again later.",
-    "invalidInput": "Please check the form and try again."
+    "invalidInput": "Please check the form and try again.",
+    "protectedNote": "Protected area. Access is logged."
   },
   "wizard": {
     "title": "New case",
@@ -422,7 +436,8 @@
       "vettingQueue": "Pending agency vetting",
       "openListings": "Open listings",
       "awardsPending": "Awards pending signature",
-      "disputesOpen": "Open disputes"
+      "disputesOpen": "Open disputes",
+      "process": "Process"
     },
     "disputes": {
       "title": "Disputes",

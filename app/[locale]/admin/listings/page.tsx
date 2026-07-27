@@ -20,39 +20,53 @@ export default async function AdminListingsPage({ params }: PageProps<"/[locale]
   });
 
   return (
-    <div className="flex flex-col gap-6">
-      <h1 className="text-2xl font-semibold">{t(dict, "admin.listings.title", {}, locale)}</h1>
+    <div className="flex flex-col gap-10">
+      <h1 className="font-display text-[clamp(40px,5vw,72px)] font-medium leading-[0.85] tracking-[-0.03em]">
+        {t(dict, "admin.listings.title", {}, locale)}.
+      </h1>
 
-      {listings.length === 0 ? (
-        <p className="text-zinc-600">{t(dict, "admin.listings.empty", {}, locale)}</p>
-      ) : (
-        <Table>
-          <thead>
-            <tr className="border-b">
-              <th className="py-1">{t(dict, "admin.listings.reference", {}, locale)}</th>
-              <th className="py-1">{t(dict, "admin.listings.status", {}, locale)}</th>
-              <th className="py-1">{t(dict, "admin.listings.bids", {}, locale)}</th>
-              <th className="py-1">{t(dict, "admin.listings.closesAt", {}, locale)}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {listings.map((l) => (
-              <tr key={l.id} className="border-b last:border-0">
-                <td className="py-1">
-                  <Link href={`/${locale}/admin/cases/${l.caseId}`} className="underline">
-                    {l.case.reference}
-                  </Link>
-                </td>
-                <td className="py-1">
-                  <Badge tone={statusTone(l.status === "open" ? "OPEN_FOR_BIDS" : l.status)}>{l.status}</Badge>
-                </td>
-                <td className="py-1">{l.bids.length}</td>
-                <td className="py-1">{fmtDate(l.closesAt, locale)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      )}
+      <section className="flex flex-col gap-4">
+        <div className="flex items-center justify-between border-b border-ink pb-2 font-mono text-[11px] uppercase tracking-[0.14em]">
+          <span>{t(dict, "admin.listings.title", {}, locale)}</span>
+          <span aria-hidden>({listings.length})</span>
+        </div>
+
+        {listings.length === 0 ? (
+          <p className="text-[12px] text-ink/70">{t(dict, "admin.listings.empty", {}, locale)}</p>
+        ) : (
+          <div className="overflow-x-auto">
+            <Table>
+              <thead>
+                <tr>
+                  <th>{t(dict, "admin.listings.reference", {}, locale)}</th>
+                  <th>{t(dict, "admin.listings.status", {}, locale)}</th>
+                  <th>{t(dict, "admin.listings.bids", {}, locale)}</th>
+                  <th>{t(dict, "admin.listings.closesAt", {}, locale)}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {listings.map((l) => (
+                  <tr key={l.id}>
+                    <td>
+                      <Link
+                        href={`/${locale}/admin/cases/${l.caseId}`}
+                        className="font-mono hover:text-accent"
+                      >
+                        {l.case.reference}
+                      </Link>
+                    </td>
+                    <td>
+                      <Badge tone={statusTone(l.status === "open" ? "OPEN_FOR_BIDS" : l.status)}>{l.status}</Badge>
+                    </td>
+                    <td className="font-mono">{l.bids.length}</td>
+                    <td className="font-mono">{fmtDate(l.closesAt, locale)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </div>
+        )}
+      </section>
     </div>
   );
 }

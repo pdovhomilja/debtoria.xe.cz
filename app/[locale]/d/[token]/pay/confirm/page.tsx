@@ -23,30 +23,46 @@ export default async function DebtorPayConfirmPage({
   if (!intent) {
     return (
       <Card>
-        <h1 className="mb-2 text-xl font-semibold">{t(dict, "debtor.invalidToken.title", {}, locale)}</h1>
-        <p className="text-sm text-zinc-600">{t(dict, "debtor.invalidToken.body", {}, locale)}</p>
+        <h1 className="mb-2 font-display text-xl font-medium tracking-[-0.01em]">
+          {t(dict, "debtor.invalidToken.title", {}, locale)}
+        </h1>
+        <p className="text-sm text-ink/70">{t(dict, "debtor.invalidToken.body", {}, locale)}</p>
       </Card>
     );
   }
 
   return (
-    <Card>
-      <h1 className="mb-4 text-xl font-semibold">{t(dict, "debtor.payConfirm.title", {}, locale)}</h1>
-      <p className="mb-4 text-sm">
-        {t(dict, "debtor.payConfirm.amountLabel", {}, locale)}:{" "}
-        <strong>{fmtMoney(intent.amount, intent.currency, locale)}</strong>
-      </p>
-      <form action={confirmPaymentAction} className="flex flex-col gap-3">
+    <div className="flex flex-col gap-8">
+      <h1 className="font-display text-[clamp(36px,5vw,64px)] font-medium leading-[0.9] tracking-[-0.02em]">
+        {t(dict, "debtor.payConfirm.title", {}, locale)}.
+      </h1>
+      <div>
+        <p className="text-[11px] uppercase tracking-[0.14em] text-ink/70">
+          {t(dict, "debtor.payConfirm.amountLabel", {}, locale)}
+        </p>
+        <p className="font-mono text-[clamp(32px,5vw,56px)] leading-none">
+          {fmtMoney(intent.amount, intent.currency, locale)}
+        </p>
+      </div>
+      <form action={confirmPaymentAction} className="flex flex-col">
         <input type="hidden" name="token" value={token} />
         <input type="hidden" name="locale" value={locale} />
         <input type="hidden" name="ref" value={ref} />
-        <button type="submit" className="self-start rounded border px-3 py-2 text-sm font-medium">
-          {t(dict, "debtor.payConfirm.payButton", {}, locale)}
+        <button
+          type="submit"
+          className="inline-flex items-center gap-3 self-start rounded-[32px] bg-accent px-5 py-2 text-[13px] font-medium text-white transition-colors hover:bg-accent-hover disabled:opacity-60"
+        >
+          <span>{t(dict, "debtor.payConfirm.payButton", {}, locale)}</span>
+          <span aria-hidden>→</span>
         </button>
       </form>
-      <Link href={`/${locale}/d/${token}`} className="mt-4 inline-block text-sm underline">
-        {t(dict, "debtor.payConfirm.backLink", {}, locale)}
+      <Link
+        href={`/${locale}/d/${token}`}
+        className="inline-flex items-center gap-2 self-start text-[12px] text-ink/70 transition-colors hover:text-ink"
+      >
+        <span aria-hidden>←</span>
+        <span>{t(dict, "debtor.payConfirm.backLink", {}, locale)}</span>
       </Link>
-    </Card>
+    </div>
   );
 }

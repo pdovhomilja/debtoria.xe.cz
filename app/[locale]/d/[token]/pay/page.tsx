@@ -20,8 +20,10 @@ export default async function DebtorPayPage({
   if (!view) {
     return (
       <Card>
-        <h1 className="mb-2 text-xl font-semibold">{t(dict, "debtor.invalidToken.title", {}, locale)}</h1>
-        <p className="text-sm text-zinc-600">{t(dict, "debtor.invalidToken.body", {}, locale)}</p>
+        <h1 className="mb-2 font-display text-xl font-medium tracking-[-0.01em]">
+          {t(dict, "debtor.invalidToken.title", {}, locale)}
+        </h1>
+        <p className="text-sm text-ink/70">{t(dict, "debtor.invalidToken.body", {}, locale)}</p>
       </Card>
     );
   }
@@ -29,30 +31,38 @@ export default async function DebtorPayPage({
   const { case: claim } = view;
 
   return (
-    <Card>
-      <h1 className="mb-4 text-xl font-semibold">{t(dict, "debtor.pay.title", {}, locale)}</h1>
+    <div className="flex flex-col gap-8">
+      <h1 className="font-display text-[clamp(36px,5vw,64px)] font-medium leading-[0.9] tracking-[-0.02em]">
+        {t(dict, "debtor.pay.title", {}, locale)}.
+      </h1>
       {sp.error === "1" ? (
-        <p className="mb-3 rounded border border-red-600 bg-red-50 p-2 text-sm text-red-700">
+        <p className="border-b border-rule pb-3 text-sm text-signal">
           {t(dict, "debtor.pay.errorTooHigh", {}, locale)}
         </p>
       ) : null}
-      <form action={initiatePaymentAction} className="flex flex-col gap-3">
+      <form action={initiatePaymentAction} className="flex flex-col gap-8">
         <input type="hidden" name="token" value={token} />
         <input type="hidden" name="locale" value={locale} />
-        <label className="flex flex-col gap-1 text-sm">
-          {t(dict, "debtor.pay.amountLabel", {}, locale)} ({claim.currency})
+        <label className="flex flex-col gap-2">
+          <span className="text-[11px] uppercase tracking-[0.14em]">
+            {t(dict, "debtor.pay.amountLabel", {}, locale)} ({claim.currency})
+          </span>
           <input
             type="text"
             name="amount"
             required
             defaultValue={claim.remaining}
-            className="rounded border p-2"
+            className="w-full border-b border-rule bg-transparent pb-2 font-mono outline-none focus:border-accent"
           />
         </label>
-        <button type="submit" className="self-start rounded border px-3 py-2 text-sm font-medium">
-          {t(dict, "debtor.pay.submit", {}, locale)}
+        <button
+          type="submit"
+          className="inline-flex items-center gap-3 self-start rounded-[32px] bg-accent px-5 py-2 text-[13px] font-medium text-white transition-colors hover:bg-accent-hover disabled:opacity-60"
+        >
+          <span>{t(dict, "debtor.pay.submit", {}, locale)}</span>
+          <span aria-hidden>→</span>
         </button>
       </form>
-    </Card>
+    </div>
   );
 }

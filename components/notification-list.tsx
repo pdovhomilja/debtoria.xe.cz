@@ -2,7 +2,6 @@ import type { Notification } from "@prisma/client";
 import { t, tRaw, type Dict } from "@/lib/i18n/t";
 import { fmtDate } from "@/lib/i18n/format";
 import type { Locale } from "@/lib/i18n/locales";
-import { Card } from "@/components/ui";
 
 export function NotificationList({
   dict,
@@ -14,11 +13,11 @@ export function NotificationList({
   notifications: Notification[];
 }) {
   if (notifications.length === 0) {
-    return <p className="text-zinc-600">{t(dict, "notify.empty", {}, locale)}</p>;
+    return <p className="text-sm text-ink/70">{t(dict, "notify.empty", {}, locale)}</p>;
   }
 
   return (
-    <ul className="flex flex-col gap-2">
+    <ul>
       {notifications.map((n) => {
         // notify.templates is keyed by the literal template id (e.g.
         // "payment.received"), which itself contains dots — a plain property
@@ -30,13 +29,12 @@ export function NotificationList({
         const rendered = typeof template === "string" ? tRaw(template, vars, locale) : undefined;
 
         return (
-          <li key={n.id}>
-            <Card className={n.readAt ? "text-zinc-600" : "border-blue-400"}>
-              <div className="flex items-center justify-between gap-2 text-sm">
-                <p>{rendered ?? `${n.template} — ${JSON.stringify(n.payload)}`}</p>
-                <span className="shrink-0 text-xs text-zinc-500">{fmtDate(n.createdAt, locale)}</span>
-              </div>
-            </Card>
+          <li key={n.id} className="flex items-baseline gap-4 border-b border-rule py-3 text-sm">
+            {!n.readAt ? <span className="size-2 shrink-0 self-center bg-accent" aria-hidden /> : null}
+            <p className={`min-w-0 flex-1 ${n.readAt ? "text-ink/70" : ""}`}>
+              {rendered ?? `${n.template} — ${JSON.stringify(n.payload)}`}
+            </p>
+            <span className="shrink-0 font-mono text-[11px] text-ink/70">{fmtDate(n.createdAt, locale)}</span>
           </li>
         );
       })}

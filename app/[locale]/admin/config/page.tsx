@@ -21,78 +21,114 @@ export default async function AdminConfigPage({
   });
 
   return (
-    <div className="flex flex-col gap-6">
-      <h1 className="text-2xl font-semibold">{t(dict, "admin.config.title", {}, locale)}</h1>
+    <div className="flex flex-col gap-10">
+      <h1 className="font-display text-[clamp(40px,5vw,72px)] font-medium leading-[0.85] tracking-[-0.03em]">
+        {t(dict, "admin.config.title", {}, locale)}.
+      </h1>
 
-      {rules.length === 0 ? (
-        <p className="text-zinc-600">{t(dict, "admin.config.empty", {}, locale)}</p>
-      ) : (
-        <Table>
-          <thead>
-            <tr className="border-b">
-              <th className="py-1">{t(dict, "admin.config.country", {}, locale)}</th>
-              <th className="py-1">{t(dict, "admin.config.band", {}, locale)}</th>
-              <th className="py-1">{t(dict, "admin.config.maxAgeDays", {}, locale)}</th>
-              <th className="py-1">{t(dict, "admin.config.platformPct", {}, locale)}</th>
-              <th className="py-1">{t(dict, "admin.config.active", {}, locale)}</th>
-              <th className="py-1" />
-            </tr>
-          </thead>
-          <tbody>
-            {rules.map((r) => (
-              <tr key={r.id} className="border-b last:border-0">
-                <td className="py-1">{r.countryCode}</td>
-                <td className="py-1">
-                  {fmtMoney(r.minAmount.toString(), "EUR", locale)} –{" "}
-                  {r.maxAmount ? fmtMoney(r.maxAmount.toString(), "EUR", locale) : "∞"}
-                </td>
-                <td className="py-1">{r.maxAgeDays ?? "—"}</td>
-                <td className="py-1">{Number(r.platformPct).toFixed(2)}%</td>
-                <td className="py-1">
-                  <Badge tone={r.active ? "success" : "default"}>
-                    {r.active
-                      ? t(dict, "admin.config.activeYes", {}, locale)
-                      : t(dict, "admin.config.activeNo", {}, locale)}
-                  </Badge>
-                </td>
-                <td className="py-1">
-                  {r.active ? (
-                    <form action={deactivatePricingRuleAction}>
-                      <input type="hidden" name="id" value={r.id} />
-                      <input type="hidden" name="locale" value={locale} />
-                      <button type="submit" className="text-sm underline">
-                        {t(dict, "admin.config.deactivate", {}, locale)}
-                      </button>
-                    </form>
-                  ) : null}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      )}
+      <section>
+        <div className="flex items-center justify-between border-b border-ink pb-2 font-mono text-[11px] uppercase tracking-[0.14em]">
+          <span>{t(dict, "admin.config.title", {}, locale)}</span>
+          <span aria-hidden>({rules.length})</span>
+        </div>
+        {rules.length === 0 ? (
+          <p className="pt-6 text-[12px] text-ink/70">{t(dict, "admin.config.empty", {}, locale)}</p>
+        ) : (
+          <div className="overflow-x-auto pt-6">
+            <Table>
+              <thead>
+                <tr>
+                  <th>{t(dict, "admin.config.country", {}, locale)}</th>
+                  <th>{t(dict, "admin.config.band", {}, locale)}</th>
+                  <th>{t(dict, "admin.config.maxAgeDays", {}, locale)}</th>
+                  <th>{t(dict, "admin.config.platformPct", {}, locale)}</th>
+                  <th>{t(dict, "admin.config.active", {}, locale)}</th>
+                  <th />
+                </tr>
+              </thead>
+              <tbody>
+                {rules.map((r) => (
+                  <tr key={r.id}>
+                    <td className="font-mono">{r.countryCode}</td>
+                    <td className="font-mono">
+                      {fmtMoney(r.minAmount.toString(), "EUR", locale)} –{" "}
+                      {r.maxAmount ? fmtMoney(r.maxAmount.toString(), "EUR", locale) : "∞"}
+                    </td>
+                    <td className="font-mono">{r.maxAgeDays ?? "—"}</td>
+                    <td className="font-mono">{Number(r.platformPct).toFixed(2)}%</td>
+                    <td>
+                      <Badge tone={r.active ? "success" : "default"}>
+                        {r.active
+                          ? t(dict, "admin.config.activeYes", {}, locale)
+                          : t(dict, "admin.config.activeNo", {}, locale)}
+                      </Badge>
+                    </td>
+                    <td>
+                      {r.active ? (
+                        <form action={deactivatePricingRuleAction}>
+                          <input type="hidden" name="id" value={r.id} />
+                          <input type="hidden" name="locale" value={locale} />
+                          <button
+                            type="submit"
+                            className="inline-flex items-center gap-3 rounded-[32px] border border-signal px-5 py-2 text-[13px] text-signal transition-colors hover:bg-signal hover:text-white"
+                          >
+                            {t(dict, "admin.config.deactivate", {}, locale)}
+                          </button>
+                        </form>
+                      ) : null}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </div>
+        )}
+      </section>
 
-      <section className="max-w-lg rounded border p-4">
-        <h2 className="mb-3 font-semibold">{t(dict, "admin.config.addRule", {}, locale)}</h2>
-        <form action={createPricingRuleAction} className="flex flex-col gap-3">
+      <section className="max-w-lg">
+        <div className="border-b border-ink pb-2 font-mono text-[11px] uppercase tracking-[0.14em]">
+          {t(dict, "admin.config.addRule", {}, locale)}
+        </div>
+        <form action={createPricingRuleAction} className="flex flex-col gap-6 pt-6">
           <input type="hidden" name="locale" value={locale} />
-          <label className="flex flex-col gap-1">
-            <span className="text-sm">{t(dict, "admin.config.country", {}, locale)}</span>
-            <select name="countryCode" defaultValue="CZ" className="rounded border px-3 py-2">
+          <label className="flex flex-col gap-2">
+            <span className="text-[11px] uppercase tracking-[0.14em]">
+              {t(dict, "admin.config.country", {}, locale)}
+            </span>
+            <select
+              name="countryCode"
+              defaultValue="CZ"
+              className="w-full border-b border-rule bg-transparent pb-2 outline-none focus:border-accent"
+            >
               <option value="CZ">Czech Republic</option>
               <option value="SK">Slovakia</option>
             </select>
           </label>
-          <label className="flex flex-col gap-1">
-            <span className="text-sm">{t(dict, "admin.config.minAmount", {}, locale)}</span>
-            <input type="text" name="minAmount" required className="rounded border px-3 py-2" />
+          <label className="flex flex-col gap-2">
+            <span className="text-[11px] uppercase tracking-[0.14em]">
+              {t(dict, "admin.config.minAmount", {}, locale)}
+            </span>
+            <input
+              type="text"
+              name="minAmount"
+              required
+              className="w-full border-b border-rule bg-transparent pb-2 outline-none focus:border-accent"
+            />
           </label>
-          <label className="flex flex-col gap-1">
-            <span className="text-sm">{t(dict, "admin.config.maxAmount", {}, locale)}</span>
-            <input type="text" name="maxAmount" className="rounded border px-3 py-2" />
+          <label className="flex flex-col gap-2">
+            <span className="text-[11px] uppercase tracking-[0.14em]">
+              {t(dict, "admin.config.maxAmount", {}, locale)}
+            </span>
+            <input
+              type="text"
+              name="maxAmount"
+              className="w-full border-b border-rule bg-transparent pb-2 outline-none focus:border-accent"
+            />
           </label>
-          <label className="flex flex-col gap-1">
-            <span className="text-sm">{t(dict, "admin.config.platformPct", {}, locale)}</span>
+          <label className="flex flex-col gap-2">
+            <span className="text-[11px] uppercase tracking-[0.14em]">
+              {t(dict, "admin.config.platformPct", {}, locale)}
+            </span>
             <input
               type="number"
               step="0.01"
@@ -100,15 +136,25 @@ export default async function AdminConfigPage({
               max="100"
               name="platformPct"
               required
-              className="rounded border px-3 py-2"
+              className="w-full border-b border-rule bg-transparent pb-2 outline-none focus:border-accent"
             />
           </label>
-          <label className="flex flex-col gap-1">
-            <span className="text-sm">{t(dict, "admin.config.maxAgeDays", {}, locale)}</span>
-            <input type="number" name="maxAgeDays" className="rounded border px-3 py-2" />
+          <label className="flex flex-col gap-2">
+            <span className="text-[11px] uppercase tracking-[0.14em]">
+              {t(dict, "admin.config.maxAgeDays", {}, locale)}
+            </span>
+            <input
+              type="number"
+              name="maxAgeDays"
+              className="w-full border-b border-rule bg-transparent pb-2 outline-none focus:border-accent"
+            />
           </label>
-          <button type="submit" className="self-start rounded border px-3 py-2 text-sm font-medium">
-            {t(dict, "admin.config.addRule", {}, locale)}
+          <button
+            type="submit"
+            className="inline-flex items-center gap-3 self-start rounded-[32px] bg-accent px-5 py-2 text-[13px] font-medium text-white transition-colors hover:bg-accent-hover disabled:opacity-60"
+          >
+            <span>{t(dict, "admin.config.addRule", {}, locale)}</span>
+            <span aria-hidden>→</span>
           </button>
         </form>
       </section>

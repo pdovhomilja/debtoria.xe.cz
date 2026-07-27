@@ -63,18 +63,25 @@ export function OnboardingForm({
   );
 
   return (
-    <form action={action} className="flex flex-col gap-6">
+    <form action={action} className="flex flex-col gap-10">
       <input type="hidden" name="locale" value={locale} />
       <input type="hidden" name="licenseCount" value={licenses.length} />
       <input type="hidden" name="jurisdictionCount" value={jurisdictions.length} />
 
-      <div className="flex flex-col gap-3 rounded border p-4">
-        <h2 className="font-medium">{tr("agency.onboarding.licensesTitle")}</h2>
+      <section className="flex flex-col">
+        <div className="flex items-center justify-between border-b border-ink pb-2 font-mono text-[11px] uppercase tracking-[0.14em]">
+          <h2 className="font-normal">{tr("agency.onboarding.licensesTitle")}</h2>
+          <span aria-hidden>({licenses.length})</span>
+        </div>
         {licenses.map((row, i) => (
-          <div key={row.key} className="flex flex-wrap items-end gap-2 border-b pb-2 last:border-0">
-            <label className="flex flex-col gap-1 text-sm">
-              {tr("agency.onboarding.licenseCountry")}
-              <select name={`license_countryCode_${i}`} defaultValue={row.countryCode} className="rounded border p-2">
+          <div key={row.key} className="flex flex-wrap items-end gap-x-6 gap-y-4 border-b border-rule py-5">
+            <label className="flex flex-col gap-2">
+              <span className="text-[11px] uppercase tracking-[0.14em]">{tr("agency.onboarding.licenseCountry")}</span>
+              <select
+                name={`license_countryCode_${i}`}
+                defaultValue={row.countryCode}
+                className="w-full border-b border-rule bg-transparent pb-2 outline-none focus:border-accent"
+              >
                 {COUNTRIES.map((c) => (
                   <option key={c} value={c}>
                     {c}
@@ -82,9 +89,13 @@ export function OnboardingForm({
                 ))}
               </select>
             </label>
-            <label className="flex flex-col gap-1 text-sm">
-              {tr("agency.onboarding.licenseType")}
-              <select name={`license_licenseType_${i}`} defaultValue={row.licenseType} className="rounded border p-2">
+            <label className="flex flex-col gap-2">
+              <span className="text-[11px] uppercase tracking-[0.14em]">{tr("agency.onboarding.licenseType")}</span>
+              <select
+                name={`license_licenseType_${i}`}
+                defaultValue={row.licenseType}
+                className="w-full border-b border-rule bg-transparent pb-2 outline-none focus:border-accent"
+              >
                 {LICENSE_TYPES.map((lt) => (
                   <option key={lt} value={lt}>
                     {tr(`agency.onboarding.licenseType${lt === "collection" ? "Collection" : lt === "law_firm" ? "LawFirm" : "Csd"}`)}
@@ -92,29 +103,29 @@ export function OnboardingForm({
                 ))}
               </select>
             </label>
-            <label className="flex flex-col gap-1 text-sm">
-              {tr("agency.onboarding.licenseNumber")}
+            <label className="flex flex-col gap-2">
+              <span className="text-[11px] uppercase tracking-[0.14em]">{tr("agency.onboarding.licenseNumber")}</span>
               <input
                 type="text"
                 name={`license_number_${i}`}
                 defaultValue={row.number}
                 required
-                className="rounded border p-2"
+                className="w-full border-b border-rule bg-transparent pb-2 font-mono outline-none focus:border-accent"
               />
             </label>
-            <label className="flex flex-col gap-1 text-sm">
-              {tr("agency.onboarding.licenseValidUntil")}
+            <label className="flex flex-col gap-2">
+              <span className="text-[11px] uppercase tracking-[0.14em]">{tr("agency.onboarding.licenseValidUntil")}</span>
               <input
                 type="date"
                 name={`license_validUntil_${i}`}
                 defaultValue={row.validUntil}
-                className="rounded border p-2"
+                className="w-full border-b border-rule bg-transparent pb-2 font-mono outline-none focus:border-accent"
               />
             </label>
             <button
               type="button"
               onClick={() => setLicenses((rows) => rows.filter((r) => r.key !== row.key))}
-              className="rounded border px-2 py-1 text-xs"
+              className="inline-flex items-center rounded-[32px] border border-ink px-3 py-1 text-[11px] transition-colors hover:bg-ink hover:text-paper"
             >
               {tr("agency.onboarding.removeLicense")}
             </button>
@@ -128,22 +139,25 @@ export function OnboardingForm({
               { key: newKey(), countryCode: "CZ", licenseType: "collection", number: "", validUntil: "" },
             ])
           }
-          className="self-start rounded border px-3 py-1.5 text-sm"
+          className="mt-5 inline-flex items-center gap-3 self-start rounded-[32px] border border-ink px-5 py-2 text-[13px] transition-colors hover:bg-ink hover:text-paper"
         >
           {tr("agency.onboarding.addLicense")}
         </button>
-      </div>
+      </section>
 
-      <div className="flex flex-col gap-3 rounded border p-4">
-        <h2 className="font-medium">{tr("agency.onboarding.jurisdictionsTitle")}</h2>
+      <section className="flex flex-col">
+        <div className="flex items-center justify-between border-b border-ink pb-2 font-mono text-[11px] uppercase tracking-[0.14em]">
+          <h2 className="font-normal">{tr("agency.onboarding.jurisdictionsTitle")}</h2>
+          <span aria-hidden>({jurisdictions.length})</span>
+        </div>
         {jurisdictions.map((row, i) => (
-          <div key={row.key} className="flex flex-wrap items-start gap-2 border-b pb-2 last:border-0">
-            <label className="flex flex-col gap-1 text-sm">
-              {tr("agency.onboarding.jurisdictionCountry")}
+          <div key={row.key} className="flex flex-wrap items-start gap-x-6 gap-y-4 border-b border-rule py-5">
+            <label className="flex flex-col gap-2">
+              <span className="text-[11px] uppercase tracking-[0.14em]">{tr("agency.onboarding.jurisdictionCountry")}</span>
               <select
                 name={`jurisdiction_countryCode_${i}`}
                 defaultValue={row.countryCode}
-                className="rounded border p-2"
+                className="w-full border-b border-rule bg-transparent pb-2 outline-none focus:border-accent"
               >
                 {COUNTRIES.map((c) => (
                   <option key={c} value={c}>
@@ -152,13 +166,13 @@ export function OnboardingForm({
                 ))}
               </select>
             </label>
-            <label className="flex flex-col gap-1 text-sm">
-              {tr("agency.onboarding.specialties")}
+            <label className="flex flex-col gap-2">
+              <span className="text-[11px] uppercase tracking-[0.14em]">{tr("agency.onboarding.specialties")}</span>
               <select
                 name={`jurisdiction_specialties_${i}`}
                 multiple
                 defaultValue={row.specialties}
-                className="min-w-32 rounded border p-2"
+                className="min-w-32 rounded-[5px] border border-rule bg-transparent p-3 outline-none focus:border-accent"
               >
                 {SPECIALTIES.map((s) => (
                   <option key={s} value={s}>
@@ -167,13 +181,13 @@ export function OnboardingForm({
                 ))}
               </select>
             </label>
-            <label className="flex flex-col gap-1 text-sm">
-              {tr("agency.onboarding.languages")}
+            <label className="flex flex-col gap-2">
+              <span className="text-[11px] uppercase tracking-[0.14em]">{tr("agency.onboarding.languages")}</span>
               <select
                 name={`jurisdiction_languages_${i}`}
                 multiple
                 defaultValue={row.languages}
-                className="min-w-32 rounded border p-2"
+                className="min-w-32 rounded-[5px] border border-rule bg-transparent p-3 font-mono outline-none focus:border-accent"
               >
                 {LANGUAGES.map((l) => (
                   <option key={l} value={l}>
@@ -182,21 +196,21 @@ export function OnboardingForm({
                 ))}
               </select>
             </label>
-            <label className="flex flex-col gap-1 text-sm">
-              {tr("agency.onboarding.capacity")}
+            <label className="flex flex-col gap-2">
+              <span className="text-[11px] uppercase tracking-[0.14em]">{tr("agency.onboarding.capacity")}</span>
               <input
                 type="number"
                 name={`jurisdiction_capacity_${i}`}
                 min={0}
                 max={10000}
                 defaultValue={row.capacity}
-                className="rounded border p-2"
+                className="w-full border-b border-rule bg-transparent pb-2 font-mono outline-none focus:border-accent"
               />
             </label>
             <button
               type="button"
               onClick={() => setJurisdictions((rows) => rows.filter((r) => r.key !== row.key))}
-              className="rounded border px-2 py-1 text-xs"
+              className="inline-flex items-center rounded-[32px] border border-ink px-3 py-1 text-[11px] transition-colors hover:bg-ink hover:text-paper"
             >
               {tr("agency.onboarding.removeJurisdiction")}
             </button>
@@ -210,14 +224,18 @@ export function OnboardingForm({
               { key: newKey(), countryCode: "CZ", specialties: [], languages: ["CS"], capacity: 10 },
             ])
           }
-          className="self-start rounded border px-3 py-1.5 text-sm"
+          className="mt-5 inline-flex items-center gap-3 self-start rounded-[32px] border border-ink px-5 py-2 text-[13px] transition-colors hover:bg-ink hover:text-paper"
         >
           {tr("agency.onboarding.addJurisdiction")}
         </button>
-      </div>
+      </section>
 
-      <button type="submit" className="self-start rounded border px-4 py-2 font-medium">
-        {tr("agency.onboarding.submit")}
+      <button
+        type="submit"
+        className="inline-flex items-center gap-3 self-start rounded-[32px] bg-accent px-5 py-2 text-[13px] font-medium text-white transition-colors hover:bg-accent-hover disabled:opacity-60"
+      >
+        <span>{tr("agency.onboarding.submit")}</span>
+        <span aria-hidden>→</span>
       </button>
     </form>
   );

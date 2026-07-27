@@ -20,8 +20,10 @@ export default async function DebtorSettlePage({
   if (!view) {
     return (
       <Card>
-        <h1 className="mb-2 text-xl font-semibold">{t(dict, "debtor.invalidToken.title", {}, locale)}</h1>
-        <p className="text-sm text-zinc-600">{t(dict, "debtor.invalidToken.body", {}, locale)}</p>
+        <h1 className="mb-2 font-display text-xl font-medium tracking-[-0.01em]">
+          {t(dict, "debtor.invalidToken.title", {}, locale)}
+        </h1>
+        <p className="text-sm text-ink/70">{t(dict, "debtor.invalidToken.body", {}, locale)}</p>
       </Card>
     );
   }
@@ -31,37 +33,61 @@ export default async function DebtorSettlePage({
     settlementOffer?.signatureReq && settlementOffer.signatureReq.status === "PENDING";
 
   return (
-    <Card>
-      <h1 className="mb-4 text-xl font-semibold">{t(dict, "debtor.settle.title", {}, locale)}</h1>
+    <div className="flex flex-col gap-8">
+      <h1 className="font-display text-[clamp(36px,5vw,64px)] font-medium leading-[0.9] tracking-[-0.02em]">
+        {t(dict, "debtor.settle.title", {}, locale)}.
+      </h1>
       {pendingSettlement ? (
-        <p className="mb-3 rounded border border-amber-600 bg-amber-50 p-2 text-sm text-amber-800">
+        <p className="border-b border-rule pb-3 text-sm text-ink/70">
           {t(dict, "debtor.settle.pendingNotice", {}, locale)}
         </p>
       ) : (
         <>
           {sp.error === "1" ? (
-            <p className="mb-3 rounded border border-red-600 bg-red-50 p-2 text-sm text-red-700">
+            <p className="border-b border-rule pb-3 text-sm text-signal">
               {t(dict, "debtor.settle.errorTooLow", {}, locale)}
             </p>
           ) : null}
-          <p className="mb-3 text-sm text-zinc-600">{t(dict, "debtor.settle.hint", {}, locale)}</p>
-          <form action={requestSettlementAction} className="flex flex-col gap-3">
+          <p className="text-[12px] text-ink/70">{t(dict, "debtor.settle.hint", {}, locale)}</p>
+          <form action={requestSettlementAction} className="flex flex-col gap-8">
             <input type="hidden" name="token" value={token} />
             <input type="hidden" name="locale" value={locale} />
-            <label className="flex flex-col gap-1 text-sm">
-              {t(dict, "debtor.settle.installmentsLabel", {}, locale)}
-              <input type="number" name="installments" min={2} max={24} required defaultValue={6} className="rounded border p-2" />
+            <label className="flex flex-col gap-2">
+              <span className="text-[11px] uppercase tracking-[0.14em]">
+                {t(dict, "debtor.settle.installmentsLabel", {}, locale)}
+              </span>
+              <input
+                type="number"
+                name="installments"
+                min={2}
+                max={24}
+                required
+                defaultValue={6}
+                className="w-full border-b border-rule bg-transparent pb-2 font-mono outline-none focus:border-accent"
+              />
             </label>
-            <label className="flex flex-col gap-1 text-sm">
-              {t(dict, "debtor.settle.monthlyAmountLabel", {}, locale)} ({claim.currency})
-              <input type="text" name="monthlyAmount" required placeholder="0.00" className="rounded border p-2" />
+            <label className="flex flex-col gap-2">
+              <span className="text-[11px] uppercase tracking-[0.14em]">
+                {t(dict, "debtor.settle.monthlyAmountLabel", {}, locale)} ({claim.currency})
+              </span>
+              <input
+                type="text"
+                name="monthlyAmount"
+                required
+                placeholder="0.00"
+                className="w-full border-b border-rule bg-transparent pb-2 font-mono outline-none placeholder:text-ink/40 focus:border-accent"
+              />
             </label>
-            <button type="submit" className="self-start rounded border px-3 py-2 text-sm font-medium">
-              {t(dict, "debtor.settle.submit", {}, locale)}
+            <button
+              type="submit"
+              className="inline-flex items-center gap-3 self-start rounded-[32px] border border-ink px-5 py-2 text-[13px] transition-colors hover:bg-ink hover:text-paper"
+            >
+              <span>{t(dict, "debtor.settle.submit", {}, locale)}</span>
+              <span aria-hidden>→</span>
             </button>
           </form>
         </>
       )}
-    </Card>
+    </div>
   );
 }

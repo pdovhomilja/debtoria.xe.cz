@@ -4,7 +4,6 @@ import { isLocale } from "@/lib/i18n/locales";
 import { t } from "@/lib/i18n/t";
 import { requireAgencyMember } from "@/lib/authz";
 import { db } from "@/lib/db";
-import { Card } from "@/components/ui";
 import { OnboardingForm } from "./onboarding-form";
 import { onboardAction } from "./actions";
 
@@ -22,14 +21,18 @@ export default async function AgencyOnboardingPage({
   ]);
 
   return (
-    <div className="flex flex-col gap-6">
-      <h1 className="text-2xl font-semibold">{t(dict, "agency.onboarding.title", {}, locale)}</h1>
+    <div className="flex flex-col gap-10">
+      <h1 className="font-display text-[clamp(40px,5vw,72px)] font-medium leading-[0.85] tracking-[-0.03em]">
+        {t(dict, "agency.onboarding.title", {}, locale)}.
+      </h1>
 
-      <Card className={agency.status === "pending" ? "border-amber-400 bg-amber-50" : "border-green-400 bg-green-50"}>
-        <p className="text-sm">
-          {t(dict, agency.status === "pending" ? "agency.onboarding.statusPending" : "agency.onboarding.statusApproved", {}, locale)}
-        </p>
-      </Card>
+      <p className="border-b border-t border-rule py-4 text-sm">
+        <span
+          className={`mr-3 inline-block size-2 align-middle ${agency.status === "pending" ? "bg-signal-yellow" : "bg-signal-green"}`}
+          aria-hidden
+        />
+        {t(dict, agency.status === "pending" ? "agency.onboarding.statusPending" : "agency.onboarding.statusApproved", {}, locale)}
+      </p>
 
       <OnboardingForm
         dict={dict}

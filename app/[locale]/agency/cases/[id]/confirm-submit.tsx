@@ -17,7 +17,8 @@ export function ConfirmSubmit({
         if (!window.confirm(message)) e.preventDefault();
       }}
     >
-      {children}
+      <span>{children}</span>
+      <span aria-hidden>→</span>
     </button>
   );
 }

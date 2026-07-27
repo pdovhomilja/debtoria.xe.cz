@@ -21,46 +21,60 @@ export default async function CasesPage({ params }: PageProps<"/[locale]/app/cas
   });
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">{t(dict, "common.nav.cases", {}, locale)}</h1>
-        <Link href={`/${locale}/app/cases/new`} className="rounded border px-3 py-1.5 text-sm font-medium">
-          {t(dict, "common.nav.newCase", {}, locale)}
+    <div className="flex flex-col gap-10">
+      <div className="flex flex-wrap items-end justify-between gap-6">
+        <h1 className="font-display text-[clamp(40px,5vw,72px)] font-medium leading-[0.85] tracking-[-0.03em]">
+          {t(dict, "common.nav.cases", {}, locale)}.
+        </h1>
+        <Link
+          href={`/${locale}/app/cases/new`}
+          className="inline-flex items-center gap-3 rounded-[32px] bg-accent px-5 py-2 text-[13px] font-medium text-white transition-colors hover:bg-accent-hover disabled:opacity-60"
+        >
+          <span>{t(dict, "common.nav.newCase", {}, locale)}</span>
+          <span aria-hidden>→</span>
         </Link>
       </div>
 
-      {cases.length === 0 ? (
-        <p className="text-zinc-600">{t(dict, "cases.empty", {}, locale)}</p>
-      ) : (
-        <Table>
-          <thead>
-            <tr className="border-b">
-              <th className="py-1">{t(dict, "case.reference", {}, locale)}</th>
-              <th className="py-1">{t(dict, "case.debtor", {}, locale)}</th>
-              <th className="py-1">{t(dict, "case.amount", {}, locale)}</th>
-              <th className="py-1">{t(dict, "case.status", {}, locale)}</th>
-              <th className="py-1">{t(dict, "case.createdAt", {}, locale)}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cases.map((c) => (
-              <tr key={c.id} className="border-b last:border-0">
-                <td className="py-1">
-                  <Link href={`/${locale}/app/cases/${c.id}`} className="underline">
-                    {c.reference}
-                  </Link>
-                </td>
-                <td className="py-1">{c.debtor.name}</td>
-                <td className="py-1">{fmtMoney(c.amount.toString(), c.currency, locale)}</td>
-                <td className="py-1">
-                  <Badge tone={statusTone(c.status)}>{t(dict, `common.status.${c.status}`, {}, locale)}</Badge>
-                </td>
-                <td className="py-1">{fmtDate(c.createdAt, locale)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      )}
+      <section>
+        <div className="flex items-center justify-between border-b border-ink pb-2 font-mono text-[11px] uppercase tracking-[0.14em]">
+          <span>{t(dict, "common.nav.cases", {}, locale)}</span>
+          <span aria-hidden>({cases.length})</span>
+        </div>
+        {cases.length === 0 ? (
+          <p className="py-3 text-sm text-ink/70">{t(dict, "cases.empty", {}, locale)}</p>
+        ) : (
+          <div className="overflow-x-auto">
+            <Table>
+              <thead>
+                <tr>
+                  <th>{t(dict, "case.reference", {}, locale)}</th>
+                  <th>{t(dict, "case.debtor", {}, locale)}</th>
+                  <th>{t(dict, "case.amount", {}, locale)}</th>
+                  <th>{t(dict, "case.status", {}, locale)}</th>
+                  <th>{t(dict, "case.createdAt", {}, locale)}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cases.map((c) => (
+                  <tr key={c.id}>
+                    <td className="font-mono">
+                      <Link href={`/${locale}/app/cases/${c.id}`} className="hover:text-accent">
+                        {c.reference}
+                      </Link>
+                    </td>
+                    <td>{c.debtor.name}</td>
+                    <td className="font-mono">{fmtMoney(c.amount.toString(), c.currency, locale)}</td>
+                    <td>
+                      <Badge tone={statusTone(c.status)}>{t(dict, `common.status.${c.status}`, {}, locale)}</Badge>
+                    </td>
+                    <td className="font-mono">{fmtDate(c.createdAt, locale)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </div>
+        )}
+      </section>
     </div>
   );
 }

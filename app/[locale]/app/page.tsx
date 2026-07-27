@@ -6,7 +6,7 @@ import { t } from "@/lib/i18n/t";
 import { fmtDate, fmtMoney } from "@/lib/i18n/format";
 import { requireCreditorOrg } from "@/lib/authz";
 import { db } from "@/lib/db";
-import { Card, Badge, Table, statusTone } from "@/components/ui";
+import { Card, Badge, statusTone } from "@/components/ui";
 
 export default async function DashboardPage({ params }: PageProps<"/[locale]/app">) {
   const { locale } = await params;
@@ -32,25 +32,34 @@ export default async function DashboardPage({ params }: PageProps<"/[locale]/app
   const kycVerified = kyc?.status === "VERIFIED";
 
   return (
-    <div className="flex flex-col gap-6">
-      <h1 className="text-2xl font-semibold">{t(dict, "common.nav.dashboard", {}, locale)}</h1>
+    <div className="flex flex-col gap-10">
+      <h1 className="font-display text-[clamp(40px,5vw,72px)] font-medium leading-[0.85] tracking-[-0.03em]">
+        {t(dict, "common.nav.dashboard", {}, locale)}.
+      </h1>
 
       {!kycVerified ? (
-        <Card className="border-amber-400 bg-amber-50">
+        <Card className="border-signal-yellow">
           <p className="font-medium">{t(dict, "dashboard.kycBanner.title", {}, locale)}</p>
-          <p className="mt-1 text-sm text-zinc-700">{t(dict, "dashboard.kycBanner.body", {}, locale)}</p>
-          <Link href={`/${locale}/app/kyc`} className="mt-2 inline-block underline">
-            {t(dict, "dashboard.kycBanner.cta", {}, locale)}
+          <p className="mt-1 text-sm text-ink/70">{t(dict, "dashboard.kycBanner.body", {}, locale)}</p>
+          <Link
+            href={`/${locale}/app/kyc`}
+            className="mt-4 inline-flex items-center gap-3 rounded-[32px] border border-ink px-5 py-2 text-[13px] transition-colors hover:bg-ink hover:text-paper"
+          >
+            <span>{t(dict, "dashboard.kycBanner.cta", {}, locale)}</span>
+            <span aria-hidden>→</span>
           </Link>
         </Card>
       ) : null}
 
-      <Card>
-        <h2 className="mb-3 font-medium">{t(dict, "dashboard.caseCounts.title", {}, locale)}</h2>
+      <section>
+        <div className="flex items-center justify-between border-b border-ink pb-2 font-mono text-[11px] uppercase tracking-[0.14em]">
+          <span>{t(dict, "dashboard.caseCounts.title", {}, locale)}</span>
+          <span aria-hidden>({statusCounts.length})</span>
+        </div>
         {statusCounts.length === 0 ? (
-          <p className="text-zinc-600">{t(dict, "dashboard.noCases", {}, locale)}</p>
+          <p className="py-3 text-sm text-ink/70">{t(dict, "dashboard.noCases", {}, locale)}</p>
         ) : (
-          <ul className="flex flex-wrap gap-2">
+          <ul className="flex flex-wrap gap-x-8 gap-y-3 pt-4">
             {statusCounts.map((row) => (
               <li key={row.status}>
                 <Badge tone={statusTone(row.status)}>
@@ -60,48 +69,58 @@ export default async function DashboardPage({ params }: PageProps<"/[locale]/app
             ))}
           </ul>
         )}
-      </Card>
+      </section>
 
-      <Card>
-        <div className="mb-3 flex items-center justify-between">
-          <h2 className="font-medium">{t(dict, "dashboard.recentCases.title", {}, locale)}</h2>
-          <Link href={`/${locale}/app/cases/new`} className="rounded border px-3 py-1.5 text-sm font-medium">
-            {t(dict, "dashboard.newCaseCta", {}, locale)}
-          </Link>
+      <section>
+        <div className="flex items-center justify-between border-b border-ink pb-2 font-mono text-[11px] uppercase tracking-[0.14em]">
+          <span>{t(dict, "dashboard.recentCases.title", {}, locale)}</span>
+          <span aria-hidden>({recentCases.length})</span>
         </div>
         {recentCases.length === 0 ? (
-          <p className="text-zinc-600">{t(dict, "dashboard.noCases", {}, locale)}</p>
+          <p className="py-3 text-sm text-ink/70">{t(dict, "dashboard.noCases", {}, locale)}</p>
         ) : (
-          <Table>
-            <thead>
-              <tr className="border-b">
-                <th className="py-1">{t(dict, "case.reference", {}, locale)}</th>
-                <th className="py-1">{t(dict, "case.debtor", {}, locale)}</th>
-                <th className="py-1">{t(dict, "case.amount", {}, locale)}</th>
-                <th className="py-1">{t(dict, "case.status", {}, locale)}</th>
-                <th className="py-1">{t(dict, "case.createdAt", {}, locale)}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {recentCases.map((c) => (
-                <tr key={c.id} className="border-b last:border-0">
-                  <td className="py-1">
-                    <Link href={`/${locale}/app/cases/${c.id}`} className="underline">
-                      {c.reference}
-                    </Link>
-                  </td>
-                  <td className="py-1">{c.debtor.name}</td>
-                  <td className="py-1">{fmtMoney(c.amount.toString(), c.currency, locale)}</td>
-                  <td className="py-1">
-                    <Badge tone={statusTone(c.status)}>{t(dict, `common.status.${c.status}`, {}, locale)}</Badge>
-                  </td>
-                  <td className="py-1">{fmtDate(c.createdAt, locale)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
+          <ol>
+            {recentCases.map((c, i) => (
+              <li
+                key={c.id}
+                className="grid grid-cols-[3.5rem_minmax(0,1fr)_auto] items-center gap-4 border-b border-rule py-5"
+              >
+                <span className="font-mono text-[11px] tracking-[0.06em] text-ink/40" aria-hidden>
+                  0{i + 1} /
+                </span>
+                <span className="flex min-w-0 flex-col gap-1">
+                  <span className="font-display text-[clamp(18px,2vw,27px)] font-medium">
+                    {c.debtor.name}
+                  </span>
+                  <span className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                    <Badge tone={statusTone(c.status)}>
+                      {t(dict, `common.status.${c.status}`, {}, locale)}
+                    </Badge>
+                    <span className="font-mono text-[12px] text-ink/70">
+                      {fmtMoney(c.amount.toString(), c.currency, locale)}
+                    </span>
+                    <span className="font-mono text-[12px] text-ink/70">{fmtDate(c.createdAt, locale)}</span>
+                  </span>
+                </span>
+                <Link
+                  href={`/${locale}/app/cases/${c.id}`}
+                  className="inline-flex items-center gap-3 rounded-[32px] border border-ink px-5 py-2 font-mono text-[13px] transition-colors hover:bg-ink hover:text-paper"
+                >
+                  <span>{c.reference}</span>
+                  <span aria-hidden>→</span>
+                </Link>
+              </li>
+            ))}
+          </ol>
         )}
-      </Card>
+        <Link
+          href={`/${locale}/app/cases/new`}
+          className="mt-6 inline-flex items-center gap-3 rounded-[32px] bg-accent px-5 py-2 text-[13px] font-medium text-white transition-colors hover:bg-accent-hover disabled:opacity-60"
+        >
+          <span>{t(dict, "dashboard.newCaseCta", {}, locale)}</span>
+          <span aria-hidden>→</span>
+        </Link>
+      </section>
     </div>
   );
 }

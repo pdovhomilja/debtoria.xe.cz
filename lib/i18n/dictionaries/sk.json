@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Vymáhací agentury",
+    "appName": "Debtoria",
     "nav": {
       "dashboard": "Prehľad",
       "cases": "Prípady",
@@ -48,6 +48,13 @@
     "subtitle": "Prepájame veriteľov s licencovanými vymáhacími agentúrami a pomáhame im rýchlejšie získať späť to, čo im dlžia.",
     "ctaCreditor": "Zadať prípad",
     "ctaAgency": "Pripojiť sa ako agentúra",
+    "nav": {
+      "pricing": "Cenník",
+      "trust": "Dôvera"
+    },
+    "hero": {
+      "lifecycle": "Priebeh prípadu"
+    },
     "howItWorks": {
       "title": "Ako to funguje",
       "creditorTitle": "Pre veriteľov",
@@ -70,7 +77,10 @@
       "band1": "Menšie pohľadávky majú vyššie percento poplatku platforme, aby sa agentúram oplatilo ich riešiť.",
       "band2": "Stredne veľké pohľadávky majú miernejšie percento poplatku, zodpovedajúce očakávanej miere vymoženia.",
       "band3": "Veľké pohľadávky majú najnižšie percento poplatku platforme vďaka úsporám z rozsahu.",
-      "disclaimer": "Presné pásma a sadzby sa líšia podľa krajiny a môžu sa meniť; konkrétnu sadzbu nájdete pri svojom prípade."
+      "disclaimer": "Presné pásma a sadzby sa líšia podľa krajiny a môžu sa meniť; konkrétnu sadzbu nájdete pri svojom prípade.",
+      "band1Label": "Menšie pohľadávky",
+      "band2Label": "Stredne veľké pohľadávky",
+      "band3Label": "Veľké pohľadávky"
     },
     "trust": {
       "title": "Postavené na dôvere a súlade s predpismi",
@@ -86,6 +96,9 @@
     "footer": {
       "privacy": "Zásady ochrany osobných údajov",
       "sandboxDisclaimer": "Toto je sandboxové prostredie. Podpisy, platby aj overenie totožnosti využívajú simulovaných poskytovateľov — nespracúvajú sa skutočné peniaze ani právne dokumenty."
+    },
+    "finalCta": {
+      "title": "Zadanie prípadu trvá pár minút."
     }
   },
   "auth": {
@@ -104,7 +117,8 @@
     "emailTaken": "Účet s týmto e-mailom už existuje.",
     "invalidCredentials": "Neplatný e-mail alebo heslo.",
     "rateLimited": "Príliš veľa neúspešných pokusov. Skúste to neskôr.",
-    "invalidInput": "Skontrolujte prosím formulár a skúste to znova."
+    "invalidInput": "Skontrolujte prosím formulár a skúste to znova.",
+    "protectedNote": "Chránená zóna. Prístup je protokolovaný."
   },
   "wizard": {
     "title": "Nový prípad",
@@ -422,7 +436,8 @@
       "vettingQueue": "Čaká na preverenie agentúry",
       "openListings": "Otvorené ponukové konania",
       "awardsPending": "Čaká na podpis pridelenia",
-      "disputesOpen": "Otvorené spory"
+      "disputesOpen": "Otvorené spory",
+      "process": "Spracovať"
     },
     "disputes": {
       "title": "Spory",

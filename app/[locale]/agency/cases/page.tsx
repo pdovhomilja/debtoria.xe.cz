@@ -23,49 +23,53 @@ export default async function AgencyCasesPage({ params }: PageProps<"/[locale]/a
   });
 
   return (
-    <div className="flex flex-col gap-6">
-      <h1 className="text-2xl font-semibold">{t(dict, "agency.cases.title", {}, locale)}</h1>
+    <div className="flex flex-col gap-10">
+      <h1 className="font-display text-[clamp(40px,5vw,72px)] font-medium leading-[0.85] tracking-[-0.03em]">
+        {t(dict, "agency.cases.title", {}, locale)}.
+      </h1>
 
       {cases.length === 0 ? (
-        <p className="text-zinc-600">{t(dict, "agency.cases.empty", {}, locale)}</p>
+        <p className="text-sm text-ink/70">{t(dict, "agency.cases.empty", {}, locale)}</p>
       ) : (
-        <Table>
-          <thead>
-            <tr className="border-b">
-              <th className="py-1">{t(dict, "agency.cases.reference", {}, locale)}</th>
-              <th className="py-1">{t(dict, "agency.cases.debtor", {}, locale)}</th>
-              <th className="py-1">{t(dict, "agency.cases.amount", {}, locale)}</th>
-              <th className="py-1">{t(dict, "agency.cases.recovered", {}, locale)}</th>
-              <th className="py-1">{t(dict, "agency.cases.status", {}, locale)}</th>
-              <th className="py-1">{t(dict, "agency.cases.awardedAt", {}, locale)}</th>
-              <th className="py-1" />
-            </tr>
-          </thead>
-          <tbody>
-            {cases.map((c) => {
-              const recoveredCents = c.payments
-                .filter((p) => COUNTED_PAYMENT_STATUSES.has(p.status))
-                .reduce((s, p) => s + Math.round(Number(p.amount) * 100), 0);
-              return (
-                <tr key={c.id} className="border-b last:border-0">
-                  <td className="py-1">{c.reference}</td>
-                  <td className="py-1">{c.debtor.name}</td>
-                  <td className="py-1">{fmtMoney(c.amount.toString(), c.currency, locale)}</td>
-                  <td className="py-1">{fmtMoney((recoveredCents / 100).toFixed(2), c.currency, locale)}</td>
-                  <td className="py-1">
-                    <Badge tone={statusTone(c.status)}>{t(dict, `common.status.${c.status}`, {}, locale)}</Badge>
-                  </td>
-                  <td className="py-1">{c.award ? fmtDate(c.award.awardedAt, locale) : "—"}</td>
-                  <td className="py-1">
-                    <Link href={`/${locale}/agency/cases/${c.id}`} className="underline">
-                      {t(dict, "agency.cases.open", {}, locale)}
-                    </Link>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
+        <div className="overflow-x-auto">
+          <Table>
+            <thead>
+              <tr>
+                <th>{t(dict, "agency.cases.reference", {}, locale)}</th>
+                <th>{t(dict, "agency.cases.debtor", {}, locale)}</th>
+                <th>{t(dict, "agency.cases.amount", {}, locale)}</th>
+                <th>{t(dict, "agency.cases.recovered", {}, locale)}</th>
+                <th>{t(dict, "agency.cases.status", {}, locale)}</th>
+                <th>{t(dict, "agency.cases.awardedAt", {}, locale)}</th>
+                <th />
+              </tr>
+            </thead>
+            <tbody>
+              {cases.map((c) => {
+                const recoveredCents = c.payments
+                  .filter((p) => COUNTED_PAYMENT_STATUSES.has(p.status))
+                  .reduce((s, p) => s + Math.round(Number(p.amount) * 100), 0);
+                return (
+                  <tr key={c.id}>
+                    <td className="font-mono">{c.reference}</td>
+                    <td>{c.debtor.name}</td>
+                    <td className="font-mono">{fmtMoney(c.amount.toString(), c.currency, locale)}</td>
+                    <td className="font-mono">{fmtMoney((recoveredCents / 100).toFixed(2), c.currency, locale)}</td>
+                    <td>
+                      <Badge tone={statusTone(c.status)}>{t(dict, `common.status.${c.status}`, {}, locale)}</Badge>
+                    </td>
+                    <td className="font-mono">{c.award ? fmtDate(c.award.awardedAt, locale) : "—"}</td>
+                    <td>
+                      <Link href={`/${locale}/agency/cases/${c.id}`} className="hover:text-accent">
+                        {t(dict, "agency.cases.open", {}, locale)} <span aria-hidden>→</span>
+                      </Link>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+        </div>
       )}
     </div>
   );

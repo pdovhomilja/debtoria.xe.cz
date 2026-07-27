@@ -3,7 +3,6 @@ import { getDictionary } from "@/lib/i18n/dictionaries";
 import { isLocale } from "@/lib/i18n/locales";
 import { t } from "@/lib/i18n/t";
 import { requireRole } from "@/lib/authz";
-import { Card } from "@/components/ui";
 import { ConfirmSubmit } from "../disputes/[id]/confirm-submit";
 import { eraseSubjectAction, purgeExpiredAction } from "./actions";
 
@@ -23,69 +22,84 @@ export default async function AdminGdprPage({
   const purgeResult = typeof sp.purge === "string" ? sp.purge : undefined;
 
   return (
-    <div className="flex flex-col gap-6">
-      <h1 className="text-2xl font-semibold">{t(dict, "admin.gdpr.title", {}, locale)}</h1>
+    <div className="flex flex-col gap-10">
+      <h1 className="font-display text-[clamp(40px,5vw,72px)] font-medium leading-[0.85] tracking-[-0.03em]">
+        {t(dict, "admin.gdpr.title", {}, locale)}.
+      </h1>
 
-      <Card>
-        <h2 className="mb-3 font-semibold">{t(dict, "admin.gdpr.subjectTitle", {}, locale)}</h2>
-        <form className="flex flex-wrap items-end gap-3">
-          <label className="flex flex-col gap-1">
-            <span className="text-sm">{t(dict, "admin.gdpr.emailLabel", {}, locale)}</span>
+      <section className="flex flex-col gap-5">
+        <div className="border-b border-ink pb-2 font-mono text-[11px] uppercase tracking-[0.14em]">
+          {t(dict, "admin.gdpr.subjectTitle", {}, locale)}
+        </div>
+        <form className="flex flex-wrap items-end gap-4">
+          <label className="flex min-w-64 flex-1 flex-col gap-2">
+            <span className="text-[11px] uppercase tracking-[0.14em]">
+              {t(dict, "admin.gdpr.emailLabel", {}, locale)}
+            </span>
             <input
               type="email"
               name="email"
               defaultValue={email}
               required
-              className="rounded border px-3 py-2"
+              className="w-full border-b border-rule bg-transparent pb-2 outline-none focus:border-accent"
             />
           </label>
           <input type="hidden" name="locale" value={locale} />
-          <button type="submit" className="rounded border px-3 py-2 text-sm font-medium">
-            {t(dict, "admin.gdpr.lookupButton", {}, locale)}
+          <button
+            type="submit"
+            className="inline-flex items-center gap-3 rounded-[32px] bg-accent px-5 py-2 text-[13px] font-medium text-white transition-colors hover:bg-accent-hover disabled:opacity-60"
+          >
+            <span>{t(dict, "admin.gdpr.lookupButton", {}, locale)}</span>
+            <span aria-hidden>→</span>
           </button>
           {email ? (
             <a
               href={`/api/admin/gdpr-export?email=${encodeURIComponent(email)}`}
-              className="rounded border px-3 py-2 text-sm font-medium"
+              className="inline-flex items-center gap-3 rounded-[32px] border border-ink px-5 py-2 text-[13px] transition-colors hover:bg-ink hover:text-paper"
             >
-              {t(dict, "admin.gdpr.exportButton", {}, locale)}
+              <span>{t(dict, "admin.gdpr.exportButton", {}, locale)}</span>
+              <span aria-hidden>→</span>
             </a>
           ) : (
-            <span className="rounded border px-3 py-2 text-sm font-medium text-zinc-400">
-              {t(dict, "admin.gdpr.exportButton", {}, locale)}
+            <span className="inline-flex items-center gap-3 rounded-[32px] border border-ink px-5 py-2 text-[13px] opacity-40">
+              <span>{t(dict, "admin.gdpr.exportButton", {}, locale)}</span>
+              <span aria-hidden>→</span>
             </span>
           )}
         </form>
 
         {eraseResult === "ok" ? (
-          <p className="mt-3 rounded bg-green-100 p-3 text-sm text-green-800">
+          <p className="border-b border-rule pb-3 text-sm text-signal-green">
             {t(dict, "admin.gdpr.eraseSuccess", {}, locale)}
           </p>
         ) : null}
         {eraseResult === "blocked" ? (
-          <p className="mt-3 rounded bg-red-100 p-3 text-sm text-red-800">
+          <p className="border-b border-rule pb-3 text-sm text-signal">
             {eraseReason ?? t(dict, "admin.gdpr.eraseBlocked", {}, locale)}
           </p>
         ) : null}
 
-        <form action={eraseSubjectAction} className="mt-4 flex items-end gap-3">
+        <form action={eraseSubjectAction} className="flex flex-wrap items-center gap-4">
           <input type="hidden" name="email" value={email} />
           <input type="hidden" name="locale" value={locale} />
           <ConfirmSubmit
             message={t(dict, "admin.gdpr.eraseConfirm", {}, locale)}
-            className="rounded border px-3 py-2 text-sm font-medium text-red-700 disabled:opacity-50"
+            className="inline-flex items-center gap-3 rounded-[32px] border border-signal px-5 py-2 text-[13px] text-signal transition-colors hover:bg-signal hover:text-white disabled:opacity-60"
           >
-            {t(dict, "admin.gdpr.eraseButton", {}, locale)}
+            <span>{t(dict, "admin.gdpr.eraseButton", {}, locale)}</span>
+            <span aria-hidden>→</span>
           </ConfirmSubmit>
-          <span className="text-xs text-zinc-500">{t(dict, "admin.gdpr.eraseHint", {}, locale)}</span>
+          <span className="text-[12px] text-ink/70">{t(dict, "admin.gdpr.eraseHint", {}, locale)}</span>
         </form>
-      </Card>
+      </section>
 
-      <Card>
-        <h2 className="mb-3 font-semibold">{t(dict, "admin.gdpr.retentionTitle", {}, locale)}</h2>
-        <p className="mb-3 text-sm text-zinc-600">{t(dict, "admin.gdpr.retentionHint", {}, locale)}</p>
+      <section className="flex flex-col gap-5">
+        <div className="border-b border-ink pb-2 font-mono text-[11px] uppercase tracking-[0.14em]">
+          {t(dict, "admin.gdpr.retentionTitle", {}, locale)}
+        </div>
+        <p className="text-[12px] text-ink/70">{t(dict, "admin.gdpr.retentionHint", {}, locale)}</p>
         {purgeResult !== undefined ? (
-          <p className="mb-3 rounded bg-zinc-100 p-3 text-sm">
+          <p className="border-b border-rule pb-3 font-mono text-sm">
             {t(dict, "admin.gdpr.purgeResult", { count: purgeResult }, locale)}
           </p>
         ) : null}
@@ -93,12 +107,13 @@ export default async function AdminGdprPage({
           <input type="hidden" name="locale" value={locale} />
           <ConfirmSubmit
             message={t(dict, "admin.gdpr.purgeConfirm", {}, locale)}
-            className="rounded border px-3 py-2 text-sm font-medium"
+            className="inline-flex items-center gap-3 rounded-[32px] border border-signal px-5 py-2 text-[13px] text-signal transition-colors hover:bg-signal hover:text-white"
           >
-            {t(dict, "admin.gdpr.purgeButton", {}, locale)}
+            <span>{t(dict, "admin.gdpr.purgeButton", {}, locale)}</span>
+            <span aria-hidden>→</span>
           </ConfirmSubmit>
         </form>
-      </Card>
+      </section>
     </div>
   );
 }

@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Self-contained server bundle for the production Docker image.
+  output: "standalone",
   experimental: {
     serverActions: {
       // Evidence uploads (10MB cap) are posted via Server Actions; the

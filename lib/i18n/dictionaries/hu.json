@@ -1,0 +1,167 @@
+{
+  "common": {
+    "appName": "Vymáhací agentury",
+    "nav": {
+      "dashboard": "Áttekintés",
+      "cases": "Ügyek",
+      "newCase": "Új ügy",
+      "notifications": "Értesítések",
+      "logout": "Kijelentkezés",
+      "login": "Bejelentkezés",
+      "signup": "Regisztráció",
+      "feed": "Ajánlatok",
+      "admin": "Adminisztráció"
+    },
+    "actions": {
+      "save": "Mentés",
+      "submit": "Beküldés",
+      "cancel": "Mégse",
+      "back": "Vissza",
+      "next": "Tovább",
+      "sign": "Aláírás",
+      "download": "Letöltés",
+      "confirm": "Megerősítés"
+    },
+    "status": {
+      "DRAFT": "Piszkozat",
+      "PENDING_SIGNATURE": "Aláírásra vár",
+      "PENDING_VALIDATION": "Ellenőrzésre vár",
+      "OPEN_FOR_BIDS": "Ajánlatokra nyitva",
+      "BIDDING_CLOSED": "Ajánlattétel lezárva",
+      "AWARDED": "Odaítélve",
+      "IN_COLLECTION": "Behajtás alatt",
+      "LEGAL_ESCALATION": "Jogi eszkaláció",
+      "PARTIALLY_RECOVERED": "Részben behajtva",
+      "RECOVERED": "Behajtva",
+      "SETTLED": "Rendezve",
+      "CLOSED": "Lezárva",
+      "DISPUTED": "Vitatott",
+      "PAUSED": "Szüneteltetve",
+      "CANCELLED": "Törölve",
+      "UNRECOVERABLE": "Behajthatatlan",
+      "EXPIRED_NO_BIDS": "Lejárt (nincs ajánlat)"
+    },
+    "caseCount": "{count, plural, one{# ügy} other{# ügy}}"
+  },
+  "landing": {
+    "title": "Piactér a követeléskezeléshez",
+    "subtitle": "Összekötjük a hitelezőket engedéllyel rendelkező behajtó ügynökségekkel, hogy gyorsabban visszakapják járandóságukat.",
+    "ctaCreditor": "Ügy beküldése",
+    "ctaAgency": "Csatlakozás ügynökségként",
+    "howItWorks": {
+      "title": "Hogyan működik",
+      "creditorTitle": "Hitelezőknek",
+      "agencyTitle": "Ügynökségeknek",
+      "creditor": {
+        "step1": "Küldje be ügyét, és írja alá online",
+        "step2": "Engedéllyel rendelkező ügynökségek versengenek az ügyéért",
+        "step3": "Csak sikeres behajtás esetén fizet"
+      },
+      "agency": {
+        "step1": "Essen át az ellenőrzésen és a regisztráción",
+        "step2": "Tegyen ajánlatot nyitott ügyekre",
+        "step3": "Hajtsa be a követelést és jelentse a folyamatot"
+      }
+    },
+    "fee": {
+      "title": "Egyszerű, sikeralapú árazás",
+      "subtitle": "Nincs behajtás, nincs díj — a hitelező csak a ténylegesen behajtott összeg után fizet platformdíjat.",
+      "noCurePay": "No-cure, no-pay: ha az ügynökség semmit nem hajt be, Ön semmit nem fizet.",
+      "band1": "A kisebb követelések magasabb platformdíj-százalékkal járnak, hogy az ügynökségeknek megérje foglalkozni velük.",
+      "band2": "A közepes méretű követelések mérsékelt platformdíj-százalékkal rendelkeznek, a várható behajtási arányhoz igazítva.",
+      "band3": "A nagyobb követelések a legalacsonyabb platformdíj-százalékból profitálnak a méretgazdaságosság miatt.",
+      "disclaimer": "A pontos sávok és díjak országonként eltérőek, és változhatnak; az ügyére vonatkozó díjat az ügy oldalán találja."
+    },
+    "trust": {
+      "title": "Bizalomra és megfelelőségre épülve",
+      "qesTitle": "Minősített elektronikus aláírás",
+      "qesBody": "A megbízásokat és odaítélési szerződéseket eIDAS-minősített elektronikus aláírással (QES) írjuk alá, amely ugyanolyan jogi erővel bír, mint a saját kezű aláírás.",
+      "gdprTitle": "GDPR már tervezéskor",
+      "gdprBody": "A személyes adatokat dokumentált jogalapok szerint kezeljük, csak a szükséges ideig őrizzük meg, és teljeskörűen tiszteletben tartjuk az érintetti jogokat.",
+      "vettedTitle": "Ellenőrzött és engedélyezett ügynökségek",
+      "vettedBody": "Minden ügynökséget ellenőrzünk behajtási engedélyek és joghatósági lefedettség szempontjából, mielőtt ajánlatot tehetne.",
+      "redactionTitle": "Anonimizálás odaítélés előtt",
+      "redactionBody": "Az adós azonosító adatait az odaítélésig anonimizáljuk a hirdetésekben, így az ügynökségek a tények, nem a személy alapján tesznek ajánlatot."
+    },
+    "footer": {
+      "privacy": "Adatvédelmi tájékoztató",
+      "sandboxDisclaimer": "Ez egy sandbox (teszt) környezet. Az aláírások, fizetések és személyazonosság-ellenőrzések szimulált szolgáltatókat használnak — valódi pénz vagy jogi dokumentum nem kerül feldolgozásra."
+    }
+  },
+  "debtor": {
+    "title": "Adósi portál",
+    "payNow": "Fizetés most",
+    "dispute": "Az ügy vitatása",
+    "amountDue": "Esedékes összeg",
+    "invalidToken": {
+      "title": "Ez a hivatkozás már nem érvényes",
+      "body": "A meglátogatott hivatkozás érvénytelen vagy lejárt. Kérjük, forduljon a behajtó céghez vagy hitelezőjéhez egy új hivatkozásért."
+    },
+    "status": {
+      "open": "Nyitott",
+      "paid": "Kifizetve",
+      "disputed": "Vitatott"
+    },
+    "claim": {
+      "creditor": "Hitelező",
+      "reference": "Ügyszám",
+      "amount": "Eredeti összeg",
+      "totalPaid": "Eddig kifizetve",
+      "remaining": "Fennmaradó összeg",
+      "dueDate": "Esedékesség dátuma",
+      "description": "Leírás"
+    },
+    "payments": {
+      "title": "Fizetési előzmények",
+      "empty": "Még nem érkezett befizetés.",
+      "date": "Dátum",
+      "amount": "Összeg",
+      "method": "Mód"
+    },
+    "actions": {
+      "pay": "Fizetés",
+      "requestSettlement": "Részletfizetés kérése",
+      "continueSigning": "Aláírás folytatása",
+      "dispute": "A tartozás vitatása"
+    },
+    "agency": {
+      "title": "Behajtó cég elérhetősége",
+      "name": "Név",
+      "email": "E-mail"
+    },
+    "banners": {
+      "paid": "Befizetése megérkezett. Köszönjük.",
+      "disputed": "Az Ön kifogását benyújtottuk. Hamarosan felvesszük Önnel a kapcsolatot."
+    },
+    "pay": {
+      "title": "Fizetés indítása",
+      "amountLabel": "Összeg",
+      "submit": "Tovább a fizetéshez",
+      "errorTooHigh": "Az összeg nem haladhatja meg a fennmaradó egyenleget.",
+      "errorInvalid": "Kérjük, adjon meg egy érvényes összeget."
+    },
+    "payConfirm": {
+      "title": "Fizetés megerősítése (sandbox)",
+      "amountLabel": "Ön most fizetni fog",
+      "payButton": "Fizetés most (sandbox)",
+      "backLink": "Vissza a portálra"
+    },
+    "disputeForm": {
+      "title": "A tartozás vitatása",
+      "bodyLabel": "Mondja el, miért vitatja a tartozást",
+      "submit": "Kifogás beküldése"
+    },
+    "settle": {
+      "title": "Részletfizetés kérése",
+      "installmentsLabel": "Részletek száma (2–24)",
+      "monthlyAmountLabel": "Havi részlet összege",
+      "hint": "Az összes részlet összegének fedeznie kell a fennmaradó egyenleget.",
+      "submit": "Részletfizetés kérése",
+      "errorTooLow": "A részletek nem fedezik a fennmaradó egyenleget.",
+      "pendingNotice": "Már van egy aláírásra váró részletfizetési terv."
+    }
+  },
+  "privacy": {
+    "title": "Adatvédelmi tájékoztató"
+  }
+}

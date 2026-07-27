@@ -1,0 +1,167 @@
+{
+  "common": {
+    "appName": "Vymáhací agentury",
+    "nav": {
+      "dashboard": "Übersicht",
+      "cases": "Fälle",
+      "newCase": "Neuer Fall",
+      "notifications": "Benachrichtigungen",
+      "logout": "Abmelden",
+      "login": "Anmelden",
+      "signup": "Registrieren",
+      "feed": "Angebote",
+      "admin": "Verwaltung"
+    },
+    "actions": {
+      "save": "Speichern",
+      "submit": "Absenden",
+      "cancel": "Abbrechen",
+      "back": "Zurück",
+      "next": "Weiter",
+      "sign": "Unterschreiben",
+      "download": "Herunterladen",
+      "confirm": "Bestätigen"
+    },
+    "status": {
+      "DRAFT": "Entwurf",
+      "PENDING_SIGNATURE": "Unterschrift ausstehend",
+      "PENDING_VALIDATION": "Prüfung ausstehend",
+      "OPEN_FOR_BIDS": "Offen für Angebote",
+      "BIDDING_CLOSED": "Angebote geschlossen",
+      "AWARDED": "Vergeben",
+      "IN_COLLECTION": "In Inkasso",
+      "LEGAL_ESCALATION": "Rechtliche Eskalation",
+      "PARTIALLY_RECOVERED": "Teilweise beigetrieben",
+      "RECOVERED": "Beigetrieben",
+      "SETTLED": "Beglichen",
+      "CLOSED": "Geschlossen",
+      "DISPUTED": "Angefochten",
+      "PAUSED": "Pausiert",
+      "CANCELLED": "Storniert",
+      "UNRECOVERABLE": "Uneinbringlich",
+      "EXPIRED_NO_BIDS": "Abgelaufen (keine Angebote)"
+    },
+    "caseCount": "{count, plural, one{# Fall} other{# Fälle}}"
+  },
+  "landing": {
+    "title": "Ein Marktplatz für Inkasso",
+    "subtitle": "Verbindet Gläubiger mit lizenzierten Inkassobüros und hilft, Forderungen schneller einzutreiben.",
+    "ctaCreditor": "Fall einreichen",
+    "ctaAgency": "Als Inkassobüro beitreten",
+    "howItWorks": {
+      "title": "So funktioniert es",
+      "creditorTitle": "Für Gläubiger",
+      "agencyTitle": "Für Inkassobüros",
+      "creditor": {
+        "step1": "Reichen Sie Ihren Fall ein und unterschreiben Sie online",
+        "step2": "Lizenzierte Inkassobüros bieten um Ihren Fall",
+        "step3": "Sie zahlen nur bei erfolgreicher Beitreibung"
+      },
+      "agency": {
+        "step1": "Lassen Sie sich verifizieren und registrieren",
+        "step2": "Bieten Sie auf offene Fälle",
+        "step3": "Treiben Sie Forderungen ein und berichten Sie den Fortschritt"
+      }
+    },
+    "fee": {
+      "title": "Einfache, erfolgsabhängige Preise",
+      "subtitle": "Keine Beitreibung, keine Gebühr — Gläubiger zahlen eine Plattformgebühr nur auf tatsächlich beigetriebene Beträge.",
+      "noCurePay": "No-cure, no-pay: Treibt ein Inkassobüro nichts ein, zahlen Sie nichts.",
+      "band1": "Kleinere Forderungen haben einen höheren Plattformanteil, damit sich die Bearbeitung für Inkassobüros lohnt.",
+      "band2": "Mittelgroße Forderungen liegen bei einem moderaten Plattformanteil, abgestimmt auf die erwartete Beitreibungsquote.",
+      "band3": "Größere Forderungen profitieren vom niedrigsten Plattformanteil dank Skaleneffekten.",
+      "disclaimer": "Genaue Staffeln und Sätze werden je Land konfiguriert und können sich ändern; den geltenden Satz finden Sie bei Ihrem Fall."
+    },
+    "trust": {
+      "title": "Auf Vertrauen und Compliance ausgelegt",
+      "qesTitle": "Qualifizierte elektronische Signatur",
+      "qesBody": "Mandate und Zuschlagsverträge werden mit eIDAS-qualifizierten elektronischen Signaturen (QES) unterzeichnet und haben damit dieselbe Rechtswirkung wie eine handschriftliche Unterschrift.",
+      "gdprTitle": "DSGVO by Design",
+      "gdprBody": "Personenbezogene Daten werden auf dokumentierten Rechtsgrundlagen verarbeitet, nur so lange wie nötig gespeichert und unterliegen vollen Betroffenenrechten.",
+      "vettedTitle": "Geprüfte & lizenzierte Inkassobüros",
+      "vettedBody": "Jedes Inkassobüro wird vor der Angebotsabgabe auf Inkassolizenzen und Zuständigkeitsabdeckung geprüft.",
+      "redactionTitle": "Anonymisierung vor Zuschlag",
+      "redactionBody": "Identifizierende Schuldnerdaten werden in Angeboten bis zum Zuschlag geschwärzt, sodass Inkassobüros auf Grundlage von Fakten, nicht Personen, bieten."
+    },
+    "footer": {
+      "privacy": "Datenschutzerklärung",
+      "sandboxDisclaimer": "Dies ist eine Sandbox-Umgebung. Signaturen, Zahlungen und Identitätsprüfungen nutzen simulierte Anbieter — es werden weder echtes Geld noch rechtsverbindliche Dokumente verarbeitet."
+    }
+  },
+  "debtor": {
+    "title": "Schuldnerportal",
+    "payNow": "Jetzt bezahlen",
+    "dispute": "Diesen Fall anfechten",
+    "amountDue": "Fälliger Betrag",
+    "invalidToken": {
+      "title": "Dieser Link ist nicht mehr gültig",
+      "body": "Der Link, dem Sie gefolgt sind, ist ungültig oder abgelaufen. Bitte wenden Sie sich an das Inkassobüro oder Ihren Gläubiger für einen neuen Link."
+    },
+    "status": {
+      "open": "Offen",
+      "paid": "Bezahlt",
+      "disputed": "Angefochten"
+    },
+    "claim": {
+      "creditor": "Gläubiger",
+      "reference": "Fallnummer",
+      "amount": "Ursprünglicher Betrag",
+      "totalPaid": "Bisher bezahlt",
+      "remaining": "Restbetrag",
+      "dueDate": "Fälligkeitsdatum",
+      "description": "Beschreibung"
+    },
+    "payments": {
+      "title": "Zahlungshistorie",
+      "empty": "Bisher wurden keine Zahlungen erhalten.",
+      "date": "Datum",
+      "amount": "Betrag",
+      "method": "Methode"
+    },
+    "actions": {
+      "pay": "Bezahlen",
+      "requestSettlement": "Ratenzahlung beantragen",
+      "continueSigning": "Unterschrift fortsetzen",
+      "dispute": "Diese Forderung anfechten"
+    },
+    "agency": {
+      "title": "Kontakt zum Inkassobüro",
+      "name": "Name",
+      "email": "E-Mail"
+    },
+    "banners": {
+      "paid": "Ihre Zahlung ist eingegangen. Vielen Dank.",
+      "disputed": "Ihr Widerspruch wurde übermittelt. Wir melden uns in Kürze bei Ihnen."
+    },
+    "pay": {
+      "title": "Zahlung vornehmen",
+      "amountLabel": "Betrag",
+      "submit": "Weiter zur Zahlung",
+      "errorTooHigh": "Der Betrag darf den Restbetrag nicht überschreiten.",
+      "errorInvalid": "Bitte geben Sie einen gültigen Betrag ein."
+    },
+    "payConfirm": {
+      "title": "Zahlung bestätigen (Sandbox)",
+      "amountLabel": "Sie sind dabei zu bezahlen",
+      "payButton": "Jetzt bezahlen (Sandbox)",
+      "backLink": "Zurück zum Portal"
+    },
+    "disputeForm": {
+      "title": "Diese Forderung anfechten",
+      "bodyLabel": "Teilen Sie uns mit, warum Sie die Forderung anfechten",
+      "submit": "Widerspruch einreichen"
+    },
+    "settle": {
+      "title": "Ratenzahlung beantragen",
+      "installmentsLabel": "Anzahl der Raten (2–24)",
+      "monthlyAmountLabel": "Monatliche Rate",
+      "hint": "Die Summe aller Raten muss den Restbetrag decken.",
+      "submit": "Ratenzahlung beantragen",
+      "errorTooLow": "Die Raten decken den Restbetrag nicht.",
+      "pendingNotice": "Ein Ratenzahlungsplan wartet bereits auf die Unterschrift."
+    }
+  },
+  "privacy": {
+    "title": "Datenschutzerklärung"
+  }
+}

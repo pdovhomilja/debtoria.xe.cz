@@ -1,0 +1,789 @@
+{
+  "common": {
+    "appName": "Vymáhací agentury",
+    "nav": {
+      "dashboard": "Prehľad",
+      "cases": "Prípady",
+      "newCase": "Nový prípad",
+      "notifications": "Notifikácie",
+      "logout": "Odhlásiť sa",
+      "login": "Prihlásiť sa",
+      "signup": "Registrovať sa",
+      "feed": "Ponuky",
+      "admin": "Administrácia"
+    },
+    "actions": {
+      "save": "Uložiť",
+      "submit": "Odoslať",
+      "cancel": "Zrušiť",
+      "back": "Späť",
+      "next": "Ďalej",
+      "sign": "Podpísať",
+      "download": "Stiahnuť",
+      "confirm": "Potvrdiť"
+    },
+    "status": {
+      "DRAFT": "Koncept",
+      "PENDING_SIGNATURE": "Čaká na podpis",
+      "PENDING_VALIDATION": "Čaká na overenie",
+      "OPEN_FOR_BIDS": "Otvorené pre ponuky",
+      "BIDDING_CLOSED": "Ponuky uzavreté",
+      "AWARDED": "Pridelené",
+      "IN_COLLECTION": "Vo vymáhaní",
+      "LEGAL_ESCALATION": "Právna eskalácia",
+      "PARTIALLY_RECOVERED": "Čiastočne vymožené",
+      "RECOVERED": "Vymožené",
+      "SETTLED": "Vyrovnané",
+      "CLOSED": "Uzavreté",
+      "DISPUTED": "Rozporované",
+      "PAUSED": "Pozastavené",
+      "CANCELLED": "Zrušené",
+      "UNRECOVERABLE": "Nevymožiteľné",
+      "EXPIRED_NO_BIDS": "Vypršalo (bez ponúk)"
+    },
+    "caseCount": "{count, plural, one{# prípad} few{# prípady} many{# prípadu} other{# prípadov}}"
+  },
+  "landing": {
+    "title": "Trhovisko pre vymáhanie pohľadávok",
+    "subtitle": "Prepájame veriteľov s licencovanými vymáhacími agentúrami a pomáhame im rýchlejšie získať späť to, čo im dlžia.",
+    "ctaCreditor": "Zadať prípad",
+    "ctaAgency": "Pripojiť sa ako agentúra",
+    "howItWorks": {
+      "title": "Ako to funguje",
+      "creditorTitle": "Pre veriteľov",
+      "agencyTitle": "Pre agentúry",
+      "creditor": {
+        "step1": "Zadajte prípad a podpíšte online",
+        "step2": "Licencované agentúry si o Váš prípad konkurujú",
+        "step3": "Platíte len pri úspešnom vymožení"
+      },
+      "agency": {
+        "step1": "Prejdite overením a registráciou",
+        "step2": "Podávajte ponuky na otvorené prípady",
+        "step3": "Vymáhajte pohľadávku a reportujte priebeh"
+      }
+    },
+    "fee": {
+      "title": "Jednoduché ceny podľa úspechu",
+      "subtitle": "Bez vymoženia žiadny poplatok — veriteľ platí poplatok platforme len z toho, čo bolo skutočne vymožené.",
+      "noCurePay": "No-cure, no-pay: ak agentúra nič nevymôže, neplatíte nič.",
+      "band1": "Menšie pohľadávky majú vyššie percento poplatku platforme, aby sa agentúram oplatilo ich riešiť.",
+      "band2": "Stredne veľké pohľadávky majú miernejšie percento poplatku, zodpovedajúce očakávanej miere vymoženia.",
+      "band3": "Veľké pohľadávky majú najnižšie percento poplatku platforme vďaka úsporám z rozsahu.",
+      "disclaimer": "Presné pásma a sadzby sa líšia podľa krajiny a môžu sa meniť; konkrétnu sadzbu nájdete pri svojom prípade."
+    },
+    "trust": {
+      "title": "Postavené na dôvere a súlade s predpismi",
+      "qesTitle": "Kvalifikovaný elektronický podpis",
+      "qesBody": "Mandáty a zmluvy o pridelení sa podpisujú kvalifikovaným elektronickým podpisom (QES) podľa eIDAS, ktorý má rovnakú právnu váhu ako vlastnoručný podpis.",
+      "gdprTitle": "GDPR už od návrhu",
+      "gdprBody": "Osobné údaje spracúvame na základe zdokumentovaných právnych titulov, uchovávame len po nevyhnutne potrebnú dobu a rešpektujeme všetky práva dotknutých osôb.",
+      "vettedTitle": "Preverené a licencované agentúry",
+      "vettedBody": "Každá agentúra je pred podávaním ponúk overená z hľadiska licencií na vymáhanie a pokrytia jurisdikcií.",
+      "redactionTitle": "Anonymizácia pred pridelením",
+      "redactionBody": "Identifikačné údaje dlžníka sú v ponukových konaniach anonymizované až do pridelenia prípadu, takže agentúry ponúkajú na základe faktov, nie osoby."
+    },
+    "footer": {
+      "privacy": "Zásady ochrany osobných údajov",
+      "sandboxDisclaimer": "Toto je sandboxové prostredie. Podpisy, platby aj overenie totožnosti využívajú simulovaných poskytovateľov — nespracúvajú sa skutočné peniaze ani právne dokumenty."
+    }
+  },
+  "auth": {
+    "email": "E-mail",
+    "password": "Heslo",
+    "login": "Prihlásiť sa",
+    "signup": "Registrovať sa",
+    "legalName": "Právny názov",
+    "accountType": "Typ účtu",
+    "company": "Spoločnosť",
+    "individual": "Fyzická osoba",
+    "country": "Krajina",
+    "logout": "Odhlásiť sa",
+    "agencySignup": "Registrácia agentúry",
+    "fullName": "Celé meno",
+    "emailTaken": "Účet s týmto e-mailom už existuje.",
+    "invalidCredentials": "Neplatný e-mail alebo heslo.",
+    "rateLimited": "Príliš veľa neúspešných pokusov. Skúste to neskôr.",
+    "invalidInput": "Skontrolujte prosím formulár a skúste to znova."
+  },
+  "wizard": {
+    "title": "Nový prípad",
+    "intro": "Vytvorte nový vymáhací prípad v niekoľkých krokoch.",
+    "steps": {
+      "details": "Údaje o prípade",
+      "documents": "Dokumenty",
+      "review": "Kontrola a odoslanie"
+    },
+    "limitationWarning": "Dátum splatnosti je viac než 3 roky v minulosti. Pohľadávka môže byť premlčaná.",
+    "step1": {
+      "title": "Údaje o dlžníkovi",
+      "debtorTypeLabel": "Typ dlžníka",
+      "debtorType": {
+        "individual": "Fyzická osoba",
+        "company": "Právnická osoba"
+      },
+      "debtorName": "Meno / obchodné meno",
+      "debtorEmail": "E-mail",
+      "debtorPhone": "Telefón",
+      "debtorCity": "Mesto",
+      "debtorCountry": "Krajina"
+    },
+    "step2": {
+      "title": "Údaje o pohľadávke",
+      "amount": "Dlžná suma",
+      "currency": "Mena",
+      "dueDate": "Dátum splatnosti",
+      "description": "Popis",
+      "includeLegal": "Zahrnúť možnosť právnej eskalácie"
+    },
+    "step3": {
+      "title": "Dôkazy",
+      "kindLabel": "Typ dokumentu",
+      "kind": {
+        "invoice": "Faktúra",
+        "contract": "Zmluva",
+        "delivery": "Doklad o dodaní",
+        "comms": "Korešpondencia",
+        "iou": "Uznanie dlhu",
+        "other": "Ostatné"
+      },
+      "uploadFile": "Súbor (max. 10 MB)",
+      "uploadButton": "Nahrať",
+      "uploadedFiles": "Nahraté súbory",
+      "noFiles": "Zatiaľ neboli nahrané žiadne súbory."
+    },
+    "step4": {
+      "title": "Kontrola a odoslanie",
+      "reviewDebtor": "Dlžník",
+      "reviewClaim": "Pohľadávka",
+      "reviewEvidence": "Súbory dôkazov",
+      "submitButton": "Odoslať prípad"
+    }
+  },
+  "case": {
+    "title": "Prípad",
+    "amount": "Dlžná suma",
+    "debtor": "Dlžník",
+    "creditor": "Veriteľ",
+    "status": "Stav",
+    "createdAt": "Vytvorené",
+    "reference": "Číslo prípadu",
+    "jurisdiction": "Jurisdikcia",
+    "dueDate": "Dátum splatnosti",
+    "description": "Popis",
+    "includeLegal": "Právna eskalácia",
+    "evidence": "Dôkazy",
+    "documents": "Dokumenty",
+    "unsigned": "Nepodpísané",
+    "signed": "Podpísané",
+    "signNow": "Podpísať teraz",
+    "timeline": "Časová os",
+    "noEvents": "Zatiaľ žiadne udalosti.",
+    "bids": "Ponuky",
+    "bidsPlaceholder": "Ponuky sa zobrazia po zverejnení prípadu na trhovisku.",
+    "claimFacts": "Údaje o pohľadávke",
+    "event": {
+      "state_change": "Zmena stavu",
+      "document_signed": "Dokument podpísaný",
+      "note": "Poznámka",
+      "comm": "Komunikácia",
+      "payment": "Platba",
+      "dispute": "Spor",
+      "collection_action": "Úkon vymáhania",
+      "debtor_communication": "Komunikácia s dlžníkom",
+      "promise_to_pay": "Prísľub úhrady"
+    },
+    "payout": {
+      "title": "Výplata",
+      "grossRecovered": "Vymožená suma",
+      "agencyFee": "Provízia agentúry",
+      "creditorPayout": "Vaša výplata"
+    },
+    "disputes": {
+      "title": "Spor",
+      "reply": "Odoslať odpoveď"
+    },
+    "rating": {
+      "title": "Ohodnoťte agentúru",
+      "stars": "Hviezdičky",
+      "comment": "Komentár (voliteľný)",
+      "submit": "Odoslať hodnotenie",
+      "given": "Túto agentúru ste ohodnotili {stars}/5."
+    }
+  },
+  "cases": {
+    "empty": "Zatiaľ nemáte žiadne prípady."
+  },
+  "dashboard": {
+    "kycBanner": {
+      "title": "Overte svoju organizáciu",
+      "body": "Pred odoslaním prvého prípadu dokončite overenie KYC.",
+      "cta": "Zahájiť overenie"
+    },
+    "caseCounts": {
+      "title": "Prípady podľa stavu"
+    },
+    "recentCases": {
+      "title": "Nedávne prípady"
+    },
+    "newCaseCta": "Nový prípad",
+    "noCases": "Zatiaľ žiadne prípady."
+  },
+  "kyc": {
+    "title": "Overenie KYC",
+    "intro": "Overte totožnosť svojej organizácie pre odosielanie prípadov na trhovisko.",
+    "legalName": "Obchodné meno",
+    "countryCode": "Krajina",
+    "registryId": "IČO / registračné číslo",
+    "statusLabel": "Stav",
+    "status": {
+      "NOT_STARTED": "Nezahájené",
+      "PENDING": "Čaká na kontrolu",
+      "VERIFIED": "Overené",
+      "REJECTED": "Zamietnuté",
+      "EXPIRED": "Vypršané"
+    },
+    "startButton": "Zahájiť overenie",
+    "verifiedTierLabel": "Vaša organizácia je overená na úrovni {tier}.",
+    "pendingNotice": "Vaše overenie je v ručnom preskúmaní. Akonáhle bude dokončené, budeme vás informovať.",
+    "rejectedNotice": "Overenie bolo zamietnuté. Kontaktujte, prosím, podporu."
+  },
+  "agency": {
+    "title": "Agentúra",
+    "dashboard": "Prehľad agentúry",
+    "bids": "Ponuky",
+    "myBids": "Moje ponuky",
+    "placeBid": "Podať ponuku",
+    "nav": {
+      "dashboard": "Prehľad",
+      "feed": "Ponukové konania",
+      "cases": "Prípady",
+      "notifications": "Oznámenia",
+      "logout": "Odhlásiť sa"
+    },
+    "feed": {
+      "title": "Dostupné ponukové konania",
+      "empty": "Vo vašich jurisdikciách momentálne nie sú žiadne ponukové konania.",
+      "amountBand": "Suma",
+      "debtor": "Dlžník",
+      "age": "Vek prípadu",
+      "ageDays": "{count} dní",
+      "evidence": "Dôkazy",
+      "closesIn": "Koniec",
+      "myBid": "Vaša ponuka",
+      "viewBid": "Zobraziť / ponúknuť"
+    },
+    "listing": {
+      "title": "Detail ponukového konania",
+      "amountBand": "Suma",
+      "debtorType": "Typ dlžníka",
+      "region": "Región",
+      "closesAt": "Koniec",
+      "evidence": "Priložené dôkazy",
+      "includeLegal": "Vyžadovaná právna eskalácia"
+    },
+    "bidForm": {
+      "title": "Podať ponuku",
+      "successFeePct": "Success fee (%)",
+      "fixedFees": "Fixné poplatky (voliteľné)",
+      "scope": "Rozsah",
+      "scopeAmicable": "Iba zmierlivé vymáhanie",
+      "scopeLegal": "Zmierlivé vymáhanie + právne kroky",
+      "estimatedDays": "Odhad dní (voliteľné)",
+      "notes": "Poznámky (voliteľné)",
+      "submit": "Odoslať ponuku",
+      "myCurrentBid": "Vaša aktuálna ponuka"
+    },
+    "dashboardPage": {
+      "pendingBanner": "Registrácia vašej agentúry čaká na schválenie. Dokončite alebo skontrolujte licencie a jurisdikcie.",
+      "pendingBannerLink": "Prejsť na registráciu",
+      "activeCases": "Aktívne prípady",
+      "openBids": "Otvorené ponuky",
+      "wonAwaitingSignature": "Vyhraté zákazky čakajúce na podpis",
+      "recoveredTotal": "Celkovo vymožené",
+      "recentCases": "Nedávne prípady",
+      "viewOnboarding": "Registrácia",
+      "signNow": "Podpísať",
+      "empty": "Zatiaľ žiadne prípady."
+    },
+    "onboarding": {
+      "title": "Registrácia agentúry",
+      "statusPending": "Vaša agentúra čaká na schválenie. Podanie môžete stále upravovať.",
+      "statusApproved": "Vaša agentúra je schválená. Licencie a jurisdikcie môžete stále aktualizovať.",
+      "licensesTitle": "Licencie",
+      "licenseCountry": "Krajina",
+      "licenseType": "Typ licencie",
+      "licenseNumber": "Číslo licencie",
+      "licenseValidUntil": "Platnosť do (voliteľné)",
+      "licenseTypeCollection": "Inkasná činnosť",
+      "licenseTypeLawFirm": "Advokátska kancelária",
+      "licenseTypeCsd": "Oprávnenie ČSÚ",
+      "addLicense": "Pridať licenciu",
+      "removeLicense": "Odstrániť",
+      "jurisdictionsTitle": "Jurisdikcie",
+      "jurisdictionCountry": "Krajina",
+      "specialties": "Špecializácie",
+      "languages": "Jazyky",
+      "capacity": "Kapacita",
+      "addJurisdiction": "Pridať jurisdikciu",
+      "removeJurisdiction": "Odstrániť",
+      "submit": "Odoslať",
+      "specialty": {
+        "b2b": "B2B",
+        "b2c": "B2C",
+        "rent": "Nájomné",
+        "ecommerce": "E-commerce",
+        "services": "Služby",
+        "other": "Iné"
+      }
+    },
+    "cases": {
+      "title": "Moje prípady",
+      "empty": "Zatiaľ žiadne pridelené prípady.",
+      "reference": "Referencia",
+      "debtor": "Dlžník",
+      "amount": "Suma",
+      "recovered": "Vymožené",
+      "status": "Stav",
+      "awardedAt": "Pridelené",
+      "open": "Otvoriť"
+    },
+    "workspace": {
+      "feePct": "Dohodnutá success fee",
+      "scope": "Rozsah",
+      "debtorPanel": "Dlžník",
+      "name": "Meno",
+      "email": "E-mail",
+      "phone": "Telefón",
+      "address": "Adresa",
+      "vatId": "IČ DPH",
+      "portalLink": "Odkaz na portál dlžníka",
+      "claimFacts": "Skutočnosti pohľadávky",
+      "evidence": "Dôkazy",
+      "documents": "Dokumenty",
+      "timeline": "Časová os vymáhania",
+      "logActionTitle": "Zaznamenať úkon",
+      "actionType": "Typ",
+      "actionTypeCall": "Hovor",
+      "actionTypeEmail": "E-mail",
+      "actionTypeLetter": "List",
+      "actionTypeSms": "SMS",
+      "actionTypeNote": "Poznámka",
+      "outcome": "Výsledok",
+      "sendToDebtor": "Zároveň odoslať šablónovanú správu dlžníkovi",
+      "template": "Šablóna",
+      "templatePaymentReminder": "Upomienka platby",
+      "templateFinalNotice": "Posledná výzva",
+      "submitAction": "Zaznamenať úkon",
+      "recordPromiseTitle": "Zaznamenať prísľub úhrady",
+      "promiseAmount": "Suma",
+      "promiseDueDate": "Termín splatnosti",
+      "submitPromise": "Zaznamenať prísľub",
+      "recordPaymentTitle": "Zaznamenať platbu",
+      "paymentAmount": "Suma",
+      "paymentMethod": "Spôsob úhrady",
+      "methodBankTransfer": "Bankový prevod",
+      "methodCash": "Hotovosť",
+      "methodCard": "Platobná karta",
+      "methodOther": "Iné",
+      "paymentReceivedAt": "Prijaté dňa",
+      "submitPayment": "Zaznamenať platbu",
+      "escalateTitle": "Eskalácia",
+      "escalateLegal": "Eskalovať na právne riešenie",
+      "escalateUnrecoverable": "Označiť ako nedobytné",
+      "escalateNote": "Poznámka (povinné)",
+      "confirmEscalate": "Naozaj chcete pokračovať?",
+      "invoiceTitle": "Fakturácia provízie",
+      "invoiceNumber": "Číslo faktúry",
+      "invoiceLink": "Zobraziť faktúru",
+      "settledBanner": "Tento prípad bol vyúčtovaný — faktúra za províziu je k dispozícii nižšie."
+    }
+  },
+  "admin": {
+    "title": "Administrácia",
+    "queue": "Fronta na kontrolu",
+    "users": "Používatelia",
+    "settings": "Nastavenia",
+    "nav": {
+      "dashboard": "Fronty",
+      "validation": "Validácia",
+      "vetting": "Preverovanie agentúr",
+      "listings": "Ponukové konania",
+      "payments": "Platby",
+      "disputes": "Spory",
+      "analytics": "Analytika",
+      "audit": "Audit log",
+      "config": "Konfigurácia",
+      "gdpr": "GDPR"
+    },
+    "dashboard": {
+      "title": "Fronty",
+      "validationQueue": "Čaká na validáciu",
+      "vettingQueue": "Čaká na preverenie agentúry",
+      "openListings": "Otvorené ponukové konania",
+      "awardsPending": "Čaká na podpis pridelenia",
+      "disputesOpen": "Otvorené spory"
+    },
+    "disputes": {
+      "title": "Spory",
+      "detailTitle": "Detail sporu",
+      "filterAll": "Všetko",
+      "empty": "Žiadne spory nezodpovedajú tomuto filtru.",
+      "reference": "Prípad",
+      "type": "Typ",
+      "status": "Stav",
+      "raisedBy": "Podal",
+      "opened": "Zahájené",
+      "messages": "Správy",
+      "thread": "Vlákno",
+      "markUnderReview": "Označiť ako v riešení",
+      "replyTitle": "Odpoveď",
+      "sendReply": "Odoslať odpoveď",
+      "resolveTitle": "Vyriešiť spor",
+      "rulingPlaceholder": "Rozhodnutie (povinné)",
+      "confirmResolve": "Vyriešiť tento spor? Túto akciu nie je možné vrátiť späť.",
+      "resolve": "Vyriešiť",
+      "caseSummary": "Súhrn prípadu",
+      "viewCase": "Zobraziť prípad",
+      "ruling": "Rozhodnutie",
+      "role": {
+        "admin": "Administrátor",
+        "creditor": "Veriteľ",
+        "agency": "Agentúra",
+        "debtor": "Dlžník"
+      },
+      "disputeType": {
+        "DEBT_DISPUTED": "Rozporovanie dlhu",
+        "CREDITOR_AGENCY": "Veriteľ / agentúra",
+        "PAYMENT": "Platba",
+        "OTHER": "Iné"
+      },
+      "disputeStatus": {
+        "OPEN": "Otvorené",
+        "UNDER_REVIEW": "V riešení",
+        "RESOLVED": "Vyriešené",
+        "ESCALATED": "Eskalované",
+        "CLOSED": "Uzavreté"
+      },
+      "raisedByRole": {
+        "creditor": "Veriteľ",
+        "agency": "Agentúra",
+        "debtor": "Dlžník"
+      }
+    },
+    "validation": {
+      "title": "Validácia prípadov",
+      "reference": "Referencia",
+      "creditor": "Veriteľ",
+      "debtor": "Dlžník",
+      "amount": "Suma",
+      "evidence": "Dôkazy",
+      "screeningHit": "Zhoda pri screeningu",
+      "submitted": "Odoslané",
+      "empty": "Žiadne prípady nečakajú na validáciu.",
+      "approve": "Schváliť",
+      "reject": "Zamietnuť",
+      "note": "Poznámka (voliteľná pri schválení, odporúčaná pri zamietnutí)"
+    },
+    "vetting": {
+      "title": "Preverovanie agentúr",
+      "org": "Organizácia",
+      "country": "Krajina",
+      "licenses": "Licencie",
+      "jurisdictions": "Jurisdikcie",
+      "approve": "Schváliť",
+      "suspend": "Pozastaviť",
+      "empty": "Žiadne agentúry nečakajú na preverenie."
+    },
+    "listings": {
+      "title": "Ponukové konania",
+      "reference": "Referencia",
+      "status": "Stav",
+      "bids": "Ponuky",
+      "closesAt": "Koniec",
+      "empty": "Zatiaľ žiadne ponukové konania."
+    },
+    "caseDetail": {
+      "title": "Detail prípadu",
+      "facts": "Fakty",
+      "debtor": "Dlžník",
+      "evidence": "Dôkazy",
+      "documents": "Dokumenty",
+      "events": "Časová os",
+      "bids": "Ponuky",
+      "score": "Skóre",
+      "fee": "Success fee",
+      "scope": "Rozsah",
+      "estimatedDays": "Odhad dní",
+      "award": "Prideliť",
+      "closeNow": "Uzavrieť ponukové konanie teraz",
+      "debtorPortal": "Odkaz na portál dlžníka",
+      "approveNote": "Schváliť",
+      "rejectNote": "Zamietnuť",
+      "paymentsTitle": "Platby",
+      "paymentStatus": "Stav",
+      "reconcile": "Spárovať",
+      "settlementTitle": "Vyúčtovanie",
+      "settle": "Vyúčtovať prípad",
+      "ledgerTitle": "Rozpis provízií",
+      "gross": "Vymožená suma",
+      "agencyFee": "Provízia agentúry",
+      "platformFee": "Provízia platformy",
+      "payout": "Výplata veriteľovi",
+      "invoiceLink": "Zobraziť faktúru",
+      "closeCase": "Uzavrieť prípad"
+    },
+    "payments": {
+      "title": "Platby",
+      "unreconciledTitle": "Nespárované platby",
+      "unreconciledEmpty": "Žiadne platby nečakajú na spárovanie.",
+      "reference": "Prípad",
+      "amount": "Suma",
+      "method": "Spôsob",
+      "receivedAt": "Prijaté",
+      "agency": "Agentúra",
+      "reconcile": "Spárovať",
+      "settlementReadyTitle": "Prípady pripravené na vyúčtovanie",
+      "settlementReadyEmpty": "Žiadne prípady nie sú pripravené na vyúčtovanie.",
+      "settle": "Vyúčtovať",
+      "recentlySettledTitle": "Nedávno vyúčtované",
+      "recentlySettledEmpty": "Zatiaľ žiadne vyúčtované prípady.",
+      "gross": "Vymožená suma",
+      "agencyFee": "Provízia agentúry",
+      "platformFee": "Provízia platformy",
+      "payout": "Výplata veriteľovi",
+      "invoice": "Faktúra"
+    },
+    "analytics": {
+      "title": "Analytika",
+      "byStatus": "Prípady podľa stavu",
+      "volume": "Objem",
+      "totalVolume": "Celkový objem",
+      "recoveredVolume": "Vymožené",
+      "timing": "Čas do pridelenia",
+      "avgDaysToAward": "Priemerný počet dní od zadania do pridelenia",
+      "listingsExpiry": "Miera vypršania ponukových konaní",
+      "listingsExpiryHint": "{expired} z {total} uzavretých, vypršaných alebo pridelených ponukových konaní vypršalo bez pridelenia.",
+      "league": "Rebríček agentúr",
+      "leagueEmpty": "Zatiaľ žiadne agentúry.",
+      "agency": "Agentúra",
+      "awards": "Pridelenia",
+      "rating": "Hodnotenie",
+      "successRate": "Úspešnosť",
+      "recovered": "Vymožené"
+    },
+    "audit": {
+      "title": "Audit log",
+      "action": "Akcia",
+      "allActions": "Všetky akcie",
+      "entityType": "Typ entity",
+      "allEntityTypes": "Všetky typy entít",
+      "actorEmail": "E-mail aktéra",
+      "from": "Od",
+      "to": "Do",
+      "filter": "Filtrovať",
+      "empty": "Žiadne záznamy nezodpovedajú tomuto filtru.",
+      "when": "Kedy",
+      "entityId": "ID entity",
+      "actor": "Aktér",
+      "payload": "Dáta",
+      "viewPayload": "Zobraziť dáta",
+      "pageOf": "Strana {page} z {totalPages}",
+      "prev": "Predchádzajúca",
+      "next": "Ďalšia"
+    },
+    "config": {
+      "title": "Nastavenie cenníka",
+      "empty": "Zatiaľ žiadne cenové pravidlá.",
+      "country": "Krajina",
+      "band": "Pásmo sumy",
+      "minAmount": "Minimálna suma",
+      "maxAmount": "Maximálna suma (voliteľné)",
+      "maxAgeDays": "Max. vek prípadu (dni)",
+      "platformPct": "Poplatok platforme (%)",
+      "active": "Aktívne",
+      "activeYes": "Aktívne",
+      "activeNo": "Neaktívne",
+      "deactivate": "Deaktivovať",
+      "addRule": "Pridať pravidlo"
+    },
+    "gdpr": {
+      "title": "Nástroje GDPR",
+      "subjectTitle": "Dotknutá osoba",
+      "emailLabel": "E-mail",
+      "lookupButton": "Vyhľadať",
+      "exportButton": "Exportovať dáta (stiahnuť)",
+      "eraseButton": "Vymazať subjekt",
+      "eraseConfirm": "Vymazať osobné údaje tejto dotknutej osoby? Túto akciu nemožno vrátiť späť.",
+      "eraseHint": "Blokované, ak je akýkoľvek prepojený prípad v inom stave než UZAVRETÉ alebo ZRUŠENÉ.",
+      "eraseSuccess": "Osobné údaje dotknutej osoby boli vymazané.",
+      "eraseBlocked": "Vymazanie bolo zablokované z dôvodu zákonnej povinnosti uchovania.",
+      "retentionTitle": "Skartácia po lehote",
+      "retentionHint": "Anonymizuje údaje dlžníka pri prípadoch uzavretých pred viac než 3 rokmi.",
+      "purgeButton": "Spustiť skartáciu",
+      "purgeConfirm": "Spustiť skartáciu po lehote teraz?",
+      "purgeResult": "Skartovaných {count} prípad(ov)."
+    }
+  },
+  "debtor": {
+    "title": "Portál dlžníka",
+    "payNow": "Zaplatiť teraz",
+    "dispute": "Podať námietku",
+    "amountDue": "Splatná suma",
+    "invalidToken": {
+      "title": "Tento odkaz už nie je platný",
+      "body": "Odkaz, ktorý ste použili, je neplatný alebo vypršal. Kontaktujte prosím vymáhaciu agentúru alebo veriteľa a vyžiadajte si nový."
+    },
+    "status": {
+      "open": "Otvorené",
+      "paid": "Zaplatené",
+      "disputed": "V námietkovom konaní"
+    },
+    "claim": {
+      "creditor": "Veriteľ",
+      "reference": "Číslo prípadu",
+      "amount": "Pôvodná suma",
+      "totalPaid": "Doteraz zaplatené",
+      "remaining": "Zostávajúca suma",
+      "dueDate": "Dátum splatnosti",
+      "description": "Popis"
+    },
+    "payments": {
+      "title": "História platieb",
+      "empty": "Zatiaľ neboli prijaté žiadne platby.",
+      "date": "Dátum",
+      "amount": "Suma",
+      "method": "Spôsob"
+    },
+    "actions": {
+      "pay": "Zaplatiť",
+      "requestSettlement": "Požiadať o splátkový kalendár",
+      "continueSigning": "Pokračovať v podpise",
+      "dispute": "Podať námietku k dlhu"
+    },
+    "agency": {
+      "title": "Kontakt na vymáhaciu agentúru",
+      "name": "Názov",
+      "email": "E-mail"
+    },
+    "banners": {
+      "paid": "Vaša platba bola prijatá. Ďakujeme.",
+      "disputed": "Vaša námietka bola odoslaná. Čoskoro vás budeme kontaktovať."
+    },
+    "pay": {
+      "title": "Vykonať platbu",
+      "amountLabel": "Suma",
+      "submit": "Pokračovať k platbe",
+      "errorTooHigh": "Suma nemôže presiahnuť zostávajúci zostatok.",
+      "errorInvalid": "Zadajte prosím platnú sumu."
+    },
+    "payConfirm": {
+      "title": "Potvrdenie platby (sandbox)",
+      "amountLabel": "Chystáte sa zaplatiť",
+      "payButton": "Zaplatiť teraz (sandbox)",
+      "backLink": "Späť na portál"
+    },
+    "disputeForm": {
+      "title": "Podať námietku k dlhu",
+      "bodyLabel": "Povedzte nám, prečo dlh rozporujete",
+      "submit": "Odoslať námietku"
+    },
+    "settle": {
+      "title": "Požiadať o splátkový kalendár",
+      "installmentsLabel": "Počet splátok (2 – 24)",
+      "monthlyAmountLabel": "Mesačná splátka",
+      "hint": "Súčet všetkých splátok musí pokryť zostávajúci zostatok.",
+      "submit": "Požiadať o splátky",
+      "errorTooLow": "Splátky nepokrývajú zostávajúci zostatok.",
+      "pendingNotice": "Splátkový kalendár už čaká na podpis."
+    }
+  },
+  "notify": {
+    "title": "Notifikácie",
+    "newCase": "Nový prípad",
+    "newBid": "Nová ponuka",
+    "statusChanged": "Stav bol zmenený",
+    "empty": "Zatiaľ nemáte žiadne notifikácie.",
+    "markAllRead": "Označiť všetko ako prečítané",
+    "templates": {
+      "listing.published": "Prípad {reference} bol zverejnený na trhovisku.",
+      "case.rejected": "Prípad {reference} bol pri validácii zamietnutý.",
+      "listing.expired": "Ponukové konanie pre prípad {reference} vypršalo bez ponúk.",
+      "award.won": "Vyhrali ste ponukové konanie pre prípad {reference}.",
+      "award.lost": "Prípad {reference} bol pridelený inej agentúre.",
+      "case.awarded": "Prípad {reference} bol pridelený vymáhacej agentúre.",
+      "agency.approved": "Vaša agentúra bola schválená.",
+      "agency.suspended": "Vaša agentúra bola pozastavená.",
+      "agency.pending_vetting": "Agentúra {name} čaká na preverenie.",
+      "payment.received": "Bola prijatá platba {amount} {currency} pre prípad {reference}.",
+      "dispute.raised": "Pri prípade {reference} bol zahájený spor.",
+      "dispute.message_added": "Nová správa v spore k prípadu {reference}.",
+      "dispute.resolved": "Spor pri prípade {reference} bol vyriešený: {ruling}",
+      "settlement.requested": "Bol požiadaný splátkový kalendár pre prípad {reference}: {installments} × {monthlyAmount}.",
+      "settlement.signed": "Splátkový kalendár pre prípad {reference} bol podpísaný.",
+      "case.settled": "Prípad {reference} bol vyúčtovaný. Výplata: {creditorPayout}.",
+      "case.legal_escalation": "Prípad {reference} bol eskalovaný na právne riešenie.",
+      "case.unrecoverable": "Prípad {reference} bol označený ako nevymožiteľný.",
+      "invoice.issued": "Bola vystavená faktúra {invoiceNumber} pre prípad {reference} ({total}).",
+      "case.pending_validation": "Prípad {reference} čaká na validáciu.",
+      "debtor.notice": "Dlžníkovi bolo zaslané oznámenie o prípade.",
+      "debtor.payment_reminder": "Dlžníkovi bola zaslaná upomienka platby.",
+      "debtor.final_notice": "Dlžníkovi bola zaslaná posledná výzva."
+    }
+  },
+  "sign": {
+    "title": "Podpis dokumentu",
+    "signers": "Podpisujúci",
+    "signedAs": "Podpísané",
+    "signButton": "Podpísať pomocou QES (sandbox)",
+    "allSigned": "Všetky strany dokument podpísali.",
+    "viewSigned": "Zobraziť podpísaný dokument",
+    "notYourTurn": "Čaká sa na ostatných podpisujúcich."
+  },
+  "privacy": {
+    "title": "Zásady ochrany osobných údajov",
+    "intro": "Tento dokument vysvetľuje, ako na tejto platforme spracúvame osobné údaje. Ide o predbežný text čakajúci na finálne schválenie právnym oddelením a bude aktualizovaný pred ostrým spustením.",
+    "controller": {
+      "title": "Prevádzkovateľ",
+      "body": "[Bude upresnené právnym oddelením: obchodné meno, sídlo, IČO a kontaktné údaje prevádzkovateľa osobných údajov.]"
+    },
+    "purposes": {
+      "title": "Účely spracúvania",
+      "body": "Osobné údaje spracúvame na účely prevádzky trhoviska: zakladanie účtov a organizácií, overenie totožnosti (KYC), zadávanie a správu vymáhacích prípadov, párovanie prípadov s vymáhacími agentúrami, spracovanie podpisov a platieb, komunikáciu s dlžníkmi a riešenie sporov a podpory."
+    },
+    "legalBases": {
+      "title": "Právne základy",
+      "body": "Spracúvanie je založené na: plnení zmluvy s Vami (správa účtu a prípadov), oprávnenom záujme (párovanie na trhovisku, prevencia podvodov, zlepšovanie služby), zákonnej povinnosti (KYC/AML, účtovníctvo, uchovávanie) a súhlase, ak je výslovne vyžiadaný."
+    },
+    "recipients": {
+      "title": "Príjemcovia údajov",
+      "body": "Vymáhacia agentúra, ktorej je prípad pridelený, dostane údaje o prípade a dlžníkovi nevyhnutné na výkon mandátu. Agentúry vystupujú ako samostatní prevádzkovatelia (prípadne sprostredkovatelia, podľa mandátu) týchto údajov — presné rozdelenie rolí prevádzkovateľ/sprostredkovateľ [bude upresnené právnym oddelením]. Údaje ďalej zdieľame s poskytovateľmi podpisových a platobných služieb a s orgánmi verejnej moci, ak to vyžaduje zákon."
+    },
+    "retention": {
+      "title": "Doba uchovávania",
+      "body": "Údaje o prípadoch a finančné záznamy uchovávame počas trvania prípadu a 3 roky po jeho uzavretí z právnych a účtovných dôvodov, potom sú osobné údaje dlžníka anonymizované. O skorší výmaz môžete požiadať, ak sa neuplatňuje zákonná povinnosť uchovávania."
+    },
+    "rights": {
+      "title": "Vaše práva",
+      "body": "Máte právo na prístup k osobným údajom, ich opravu, výmaz, obmedzenie spracúvania a prenosnosť a právo namietať proti určitému spracúvaniu. Na uplatnenie týchto práv nás kontaktujte na nižšie uvedených kontaktoch."
+    },
+    "complaints": {
+      "title": "Právo podať sťažnosť",
+      "body": "Ak sa domnievate, že Vaše údaje boli spracované v rozpore so zákonom, môžete podať sťažnosť dozornému orgánu: v Českej republike Úradu pre ochranu osobných údajov (ÚOOÚ, www.uoou.cz); na Slovensku Úradu na ochranu osobných údajov SR (ÚOOÚ SR, www.dataprotection.gov.sk)."
+    },
+    "contact": {
+      "title": "Kontakt",
+      "body": "[Bude upresnené právnym oddelením: kontaktný e-mail/adresa pre otázky ohľadom ochrany osobných údajov a prípadne zodpovedná osoba.]"
+    }
+  },
+  "comms": {
+    "payment_reminder": {
+      "subject": "Upomienka platby — {caseReference}",
+      "body": "Vážená pani, vážený pán,\n\ndovoľujeme si Vás zdvorilo upozorniť na neuhradenú sumu {amount} voči veriteľovi {creditorName} v rámci prípadu {caseReference}. Budeme Vám vďační, ak dlžnú sumu uhradíte v najbližšom možnom termíne, prípadne nás kontaktujte za účelom dohody o splátkovom kalendári.\n\nĎakujeme za vybavenie tejto záležitosti.\n\nS pozdravom"
+    },
+    "final_notice": {
+      "subject": "Posledná výzva na úhradu — {caseReference}",
+      "body": "Vážená pani, vážený pán,\n\ntoto je posledná výzva na úhradu neuhradenej sumy {amount} voči veriteľovi {creditorName} v rámci prípadu {caseReference}. Ak platba nebude vykonaná v stanovenej lehote, budeme nútení pristúpiť k ďalším krokom vymáhania, vrátane súdneho konania.\n\nOdporúčame dlžnú sumu uhradiť bezodkladne, prípadne nás bez odkladu kontaktovať.\n\nS pozdravom"
+    }
+  }
+}

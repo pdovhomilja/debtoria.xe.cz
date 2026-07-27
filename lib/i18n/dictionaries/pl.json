@@ -1,0 +1,167 @@
+{
+  "common": {
+    "appName": "Vymáhací agentury",
+    "nav": {
+      "dashboard": "Panel",
+      "cases": "Sprawy",
+      "newCase": "Nowa sprawa",
+      "notifications": "Powiadomienia",
+      "logout": "Wyloguj się",
+      "login": "Zaloguj się",
+      "signup": "Zarejestruj się",
+      "feed": "Oferty",
+      "admin": "Administracja"
+    },
+    "actions": {
+      "save": "Zapisz",
+      "submit": "Wyślij",
+      "cancel": "Anuluj",
+      "back": "Wstecz",
+      "next": "Dalej",
+      "sign": "Podpisz",
+      "download": "Pobierz",
+      "confirm": "Potwierdź"
+    },
+    "status": {
+      "DRAFT": "Szkic",
+      "PENDING_SIGNATURE": "Oczekuje na podpis",
+      "PENDING_VALIDATION": "Oczekuje na weryfikację",
+      "OPEN_FOR_BIDS": "Otwarte na oferty",
+      "BIDDING_CLOSED": "Oferty zamknięte",
+      "AWARDED": "Przyznane",
+      "IN_COLLECTION": "W windykacji",
+      "LEGAL_ESCALATION": "Eskalacja prawna",
+      "PARTIALLY_RECOVERED": "Częściowo odzyskane",
+      "RECOVERED": "Odzyskane",
+      "SETTLED": "Rozliczone",
+      "CLOSED": "Zamknięte",
+      "DISPUTED": "Zakwestionowane",
+      "PAUSED": "Wstrzymane",
+      "CANCELLED": "Anulowane",
+      "UNRECOVERABLE": "Nieściągalne",
+      "EXPIRED_NO_BIDS": "Wygasło (brak ofert)"
+    },
+    "caseCount": "{count, plural, one{# sprawa} few{# sprawy} many{# spraw} other{# sprawy}}"
+  },
+  "landing": {
+    "title": "Rynek usług windykacyjnych",
+    "subtitle": "Łączymy wierzycieli z licencjonowanymi firmami windykacyjnymi i pomagamy szybciej odzyskać należności.",
+    "ctaCreditor": "Zgłoś sprawę",
+    "ctaAgency": "Dołącz jako agencja",
+    "howItWorks": {
+      "title": "Jak to działa",
+      "creditorTitle": "Dla wierzycieli",
+      "agencyTitle": "Dla agencji",
+      "creditor": {
+        "step1": "Zgłoś sprawę i podpisz ją online",
+        "step2": "Licencjonowane agencje konkurują o Twoją sprawę",
+        "step3": "Płacisz tylko za skuteczne odzyskanie"
+      },
+      "agency": {
+        "step1": "Przejdź weryfikację i rejestrację",
+        "step2": "Składaj oferty na otwarte sprawy",
+        "step3": "Prowadź windykację i raportuj postępy"
+      }
+    },
+    "fee": {
+      "title": "Proste, oparte na sukcesie ceny",
+      "subtitle": "Bez odzyskania — bez opłaty. Wierzyciel płaci opłatę platformy tylko od faktycznie odzyskanej kwoty.",
+      "noCurePay": "No-cure, no-pay: jeśli agencja niczego nie odzyska, nic nie płacisz.",
+      "band1": "Mniejsze roszczenia mają wyższy procent opłaty platformy, aby obsługa opłacała się agencjom.",
+      "band2": "Roszczenia średniej wielkości rozliczane są przy umiarkowanym procencie opłaty, dopasowanym do oczekiwanej skuteczności odzyskania.",
+      "band3": "Większe roszczenia korzystają z najniższego procentu opłaty platformy dzięki efektowi skali.",
+      "disclaimer": "Dokładne progi i stawki są konfigurowane dla każdego kraju i mogą się zmieniać; obowiązującą stawkę znajdziesz przy swojej sprawie."
+    },
+    "trust": {
+      "title": "Zbudowane na zaufaniu i zgodności z przepisami",
+      "qesTitle": "Kwalifikowany podpis elektroniczny",
+      "qesBody": "Pełnomocnictwa i umowy przyznania sprawy podpisywane są kwalifikowanym podpisem elektronicznym (QES) zgodnym z eIDAS, co daje im taką samą moc prawną jak podpis odręczny.",
+      "gdprTitle": "RODO od podstaw",
+      "gdprBody": "Dane osobowe przetwarzamy na udokumentowanych podstawach prawnych, przechowujemy tylko tak długo, jak to konieczne, i respektujemy pełnię praw osób, których dane dotyczą.",
+      "vettedTitle": "Zweryfikowane i licencjonowane agencje",
+      "vettedBody": "Każda agencja jest sprawdzana pod kątem licencji windykacyjnych i pokrycia jurysdykcji, zanim będzie mogła składać oferty.",
+      "redactionTitle": "Anonimizacja przed przyznaniem",
+      "redactionBody": "Dane identyfikujące dłużnika są anonimizowane w ofertach aż do przyznania sprawy, dzięki czemu agencje licytują na podstawie faktów, a nie osoby."
+    },
+    "footer": {
+      "privacy": "Informacja o prywatności",
+      "sandboxDisclaimer": "To środowisko testowe (sandbox). Podpisy, płatności i weryfikacja tożsamości korzystają z symulowanych dostawców — nie są przetwarzane prawdziwe pieniądze ani dokumenty prawne."
+    }
+  },
+  "debtor": {
+    "title": "Portal dłużnika",
+    "payNow": "Zapłać teraz",
+    "dispute": "Zakwestionuj tę sprawę",
+    "amountDue": "Kwota do zapłaty",
+    "invalidToken": {
+      "title": "Ten link już nie jest ważny",
+      "body": "Link, z którego skorzystałeś/aś, jest nieprawidłowy lub wygasł. Skontaktuj się z agencją windykacyjną lub wierzycielem, aby uzyskać nowy."
+    },
+    "status": {
+      "open": "Otwarte",
+      "paid": "Zapłacone",
+      "disputed": "W trakcie sporu"
+    },
+    "claim": {
+      "creditor": "Wierzyciel",
+      "reference": "Numer sprawy",
+      "amount": "Kwota pierwotna",
+      "totalPaid": "Dotychczas zapłacono",
+      "remaining": "Pozostała kwota",
+      "dueDate": "Termin płatności",
+      "description": "Opis"
+    },
+    "payments": {
+      "title": "Historia płatności",
+      "empty": "Nie odnotowano jeszcze żadnych płatności.",
+      "date": "Data",
+      "amount": "Kwota",
+      "method": "Metoda"
+    },
+    "actions": {
+      "pay": "Zapłać",
+      "requestSettlement": "Wnioskuj o plan ratalny",
+      "continueSigning": "Kontynuuj podpisywanie",
+      "dispute": "Zakwestionuj ten dług"
+    },
+    "agency": {
+      "title": "Kontakt do agencji windykacyjnej",
+      "name": "Nazwa",
+      "email": "E-mail"
+    },
+    "banners": {
+      "paid": "Twoja płatność została odebrana. Dziękujemy.",
+      "disputed": "Twój sprzeciw został przesłany. Wkrótce się z Tobą skontaktujemy."
+    },
+    "pay": {
+      "title": "Dokonaj płatności",
+      "amountLabel": "Kwota",
+      "submit": "Przejdź do płatności",
+      "errorTooHigh": "Kwota nie może przekraczać pozostałego salda.",
+      "errorInvalid": "Podaj prawidłową kwotę."
+    },
+    "payConfirm": {
+      "title": "Potwierdzenie płatności (sandbox)",
+      "amountLabel": "Zamierzasz zapłacić",
+      "payButton": "Zapłać teraz (sandbox)",
+      "backLink": "Powrót do portalu"
+    },
+    "disputeForm": {
+      "title": "Zakwestionuj ten dług",
+      "bodyLabel": "Wyjaśnij, dlaczego kwestionujesz ten dług",
+      "submit": "Wyślij sprzeciw"
+    },
+    "settle": {
+      "title": "Wnioskuj o plan ratalny",
+      "installmentsLabel": "Liczba rat (2–24)",
+      "monthlyAmountLabel": "Kwota miesięcznej raty",
+      "hint": "Suma wszystkich rat musi pokrywać pozostałe saldo.",
+      "submit": "Złóż wniosek o raty",
+      "errorTooLow": "Raty nie pokrywają pozostałego salda.",
+      "pendingNotice": "Plan ratalny już oczekuje na podpis."
+    }
+  },
+  "privacy": {
+    "title": "Informacja o prywatności"
+  }
+}

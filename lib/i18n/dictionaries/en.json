@@ -1,0 +1,788 @@
+{
+  "common": {
+    "appName": "Vymáhací agentury",
+    "nav": {
+      "dashboard": "Dashboard",
+      "cases": "Cases",
+      "newCase": "New case",
+      "notifications": "Notifications",
+      "logout": "Log out",
+      "login": "Log in",
+      "signup": "Sign up",
+      "feed": "Bid feed",
+      "admin": "Admin"
+    },
+    "actions": {
+      "save": "Save",
+      "submit": "Submit",
+      "cancel": "Cancel",
+      "back": "Back",
+      "next": "Next",
+      "sign": "Sign",
+      "download": "Download",
+      "confirm": "Confirm"
+    },
+    "status": {
+      "DRAFT": "Draft",
+      "PENDING_SIGNATURE": "Pending signature",
+      "PENDING_VALIDATION": "Pending validation",
+      "OPEN_FOR_BIDS": "Open for bids",
+      "BIDDING_CLOSED": "Bidding closed",
+      "AWARDED": "Awarded",
+      "IN_COLLECTION": "In collection",
+      "LEGAL_ESCALATION": "Legal escalation",
+      "PARTIALLY_RECOVERED": "Partially recovered",
+      "RECOVERED": "Recovered",
+      "SETTLED": "Settled",
+      "CLOSED": "Closed",
+      "DISPUTED": "Disputed",
+      "PAUSED": "Paused",
+      "CANCELLED": "Cancelled",
+      "UNRECOVERABLE": "Unrecoverable",
+      "EXPIRED_NO_BIDS": "Expired (no bids)"
+    },
+    "caseCount": "{count, plural, one{# case} other{# cases}}"
+  },
+  "landing": {
+    "title": "A marketplace for debt collection",
+    "subtitle": "Connect creditors with licensed collection agencies and recover what you're owed, faster.",
+    "ctaCreditor": "Submit a case",
+    "ctaAgency": "Join as an agency",
+    "howItWorks": {
+      "title": "How it works",
+      "creditorTitle": "For creditors",
+      "agencyTitle": "For agencies",
+      "creditor": {
+        "step1": "Submit your case and sign online",
+        "step2": "Licensed agencies compete for your case",
+        "step3": "Pay only on successful recovery"
+      },
+      "agency": {
+        "step1": "Get verified and onboarded",
+        "step2": "Bid on open cases",
+        "step3": "Collect and report progress"
+      }
+    },
+    "fee": {
+      "title": "Simple, success-based pricing",
+      "subtitle": "No recovery, no fee — creditors only pay a platform fee out of what is actually recovered.",
+      "noCurePay": "No-cure, no-pay: if an agency does not recover anything, you owe nothing.",
+      "band1": "Smaller claims carry a higher platform percentage to keep agency economics viable.",
+      "band2": "Mid-sized claims settle at a moderate platform percentage, balanced against expected recovery.",
+      "band3": "Larger claims benefit from the lowest platform percentage, reflecting economies of scale.",
+      "disclaimer": "Exact bands and rates are configured per country and may change; see your case for the rate that applies."
+    },
+    "trust": {
+      "title": "Built for trust and compliance",
+      "qesTitle": "Qualified electronic signatures",
+      "qesBody": "Mandates and award contracts are signed with eIDAS-qualified electronic signatures (QES), giving them the same legal weight as a handwritten signature.",
+      "gdprTitle": "GDPR by design",
+      "gdprBody": "Personal data is processed under documented legal bases, retained only as long as necessary, and subject to full data-subject rights.",
+      "vettedTitle": "Vetted & licensed agencies",
+      "vettedBody": "Every agency is checked for collection licences and jurisdiction coverage before it can bid on a case.",
+      "redactionTitle": "Redaction before award",
+      "redactionBody": "Debtor identifying details are redacted from listings until a case is awarded, so agencies bid on the facts, not the person."
+    },
+    "footer": {
+      "privacy": "Privacy notice",
+      "sandboxDisclaimer": "This is a sandbox environment. Signatures, payments, and identity checks use simulated providers — no real money or legal documents are processed."
+    }
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "login": "Log in",
+    "signup": "Sign up",
+    "legalName": "Legal name",
+    "accountType": "Account type",
+    "company": "Company",
+    "individual": "Individual",
+    "country": "Country",
+    "logout": "Log out",
+    "agencySignup": "Register as an agency",
+    "fullName": "Full name",
+    "emailTaken": "An account with this email already exists.",
+    "invalidCredentials": "Invalid email or password.",
+    "rateLimited": "Too many failed attempts. Try again later.",
+    "invalidInput": "Please check the form and try again."
+  },
+  "wizard": {
+    "title": "New case",
+    "intro": "Create a new collection case in a few steps.",
+    "steps": {
+      "details": "Case details",
+      "documents": "Documents",
+      "review": "Review & submit"
+    },
+    "limitationWarning": "The due date is more than 3 years in the past. The claim may be time-barred under the statute of limitations.",
+    "step1": {
+      "title": "Debtor details",
+      "debtorTypeLabel": "Debtor type",
+      "debtorType": {
+        "individual": "Individual",
+        "company": "Company"
+      },
+      "debtorName": "Full name / legal name",
+      "debtorEmail": "Email",
+      "debtorPhone": "Phone",
+      "debtorCity": "City",
+      "debtorCountry": "Country"
+    },
+    "step2": {
+      "title": "Claim details",
+      "amount": "Amount owed",
+      "currency": "Currency",
+      "dueDate": "Due date",
+      "description": "Description",
+      "includeLegal": "Include legal escalation option"
+    },
+    "step3": {
+      "title": "Evidence",
+      "kindLabel": "Document type",
+      "kind": {
+        "invoice": "Invoice",
+        "contract": "Contract",
+        "delivery": "Delivery proof",
+        "comms": "Correspondence",
+        "iou": "IOU / acknowledgement of debt",
+        "other": "Other"
+      },
+      "uploadFile": "File (max 10 MB)",
+      "uploadButton": "Upload",
+      "uploadedFiles": "Uploaded files",
+      "noFiles": "No files uploaded yet."
+    },
+    "step4": {
+      "title": "Review & submit",
+      "reviewDebtor": "Debtor",
+      "reviewClaim": "Claim",
+      "reviewEvidence": "Evidence files",
+      "submitButton": "Submit case"
+    }
+  },
+  "case": {
+    "title": "Case",
+    "amount": "Amount owed",
+    "debtor": "Debtor",
+    "creditor": "Creditor",
+    "status": "Status",
+    "createdAt": "Created",
+    "reference": "Reference",
+    "jurisdiction": "Jurisdiction",
+    "dueDate": "Due date",
+    "description": "Description",
+    "includeLegal": "Legal escalation",
+    "evidence": "Evidence",
+    "documents": "Documents",
+    "unsigned": "Unsigned",
+    "signed": "Signed",
+    "signNow": "Sign now",
+    "timeline": "Timeline",
+    "noEvents": "No events yet.",
+    "bids": "Bids",
+    "bidsPlaceholder": "Bids will appear here once the case is published to the marketplace.",
+    "claimFacts": "Claim facts",
+    "event": {
+      "state_change": "Status changed",
+      "document_signed": "Document signed",
+      "note": "Note",
+      "comm": "Communication",
+      "payment": "Payment",
+      "dispute": "Dispute",
+      "collection_action": "Collection action",
+      "debtor_communication": "Debtor communication",
+      "promise_to_pay": "Promise to pay"
+    },
+    "payout": {
+      "title": "Payout",
+      "grossRecovered": "Gross recovered",
+      "agencyFee": "Agency fee",
+      "creditorPayout": "Your payout"
+    },
+    "disputes": {
+      "title": "Dispute",
+      "reply": "Send reply"
+    },
+    "rating": {
+      "title": "Rate the agency",
+      "stars": "Stars",
+      "comment": "Comment (optional)",
+      "submit": "Submit rating",
+      "given": "You rated this agency {stars}/5."
+    }
+  },
+  "cases": {
+    "empty": "You have no cases yet."
+  },
+  "dashboard": {
+    "kycBanner": {
+      "title": "Verify your organization",
+      "body": "Complete KYC verification before submitting your first case.",
+      "cta": "Start verification"
+    },
+    "caseCounts": {
+      "title": "Cases by status"
+    },
+    "recentCases": {
+      "title": "Recent cases"
+    },
+    "newCaseCta": "New case",
+    "noCases": "No cases yet."
+  },
+  "kyc": {
+    "title": "KYC verification",
+    "intro": "Verify your organization's identity to submit cases to the marketplace.",
+    "legalName": "Legal name",
+    "countryCode": "Country",
+    "registryId": "Registry ID",
+    "statusLabel": "Status",
+    "status": {
+      "NOT_STARTED": "Not started",
+      "PENDING": "Pending review",
+      "VERIFIED": "Verified",
+      "REJECTED": "Rejected",
+      "EXPIRED": "Expired"
+    },
+    "startButton": "Start verification",
+    "verifiedTierLabel": "Your organization is verified at tier {tier}.",
+    "pendingNotice": "Your verification is under manual review. We'll notify you once it's complete.",
+    "rejectedNotice": "Verification was rejected. Please contact support."
+  },
+  "agency": {
+    "title": "Agency",
+    "dashboard": "Agency dashboard",
+    "bids": "Bids",
+    "myBids": "My bids",
+    "placeBid": "Place a bid",
+    "nav": {
+      "dashboard": "Dashboard",
+      "feed": "Bid feed",
+      "cases": "Cases",
+      "notifications": "Notifications",
+      "logout": "Log out"
+    },
+    "feed": {
+      "title": "Available listings",
+      "empty": "No listings available for your jurisdictions right now.",
+      "amountBand": "Amount",
+      "debtor": "Debtor",
+      "age": "Case age",
+      "ageDays": "{count} days",
+      "evidence": "Evidence",
+      "closesIn": "Closes",
+      "myBid": "Your bid",
+      "viewBid": "View / bid"
+    },
+    "listing": {
+      "title": "Listing detail",
+      "amountBand": "Amount",
+      "debtorType": "Debtor type",
+      "region": "Region",
+      "closesAt": "Closes at",
+      "evidence": "Evidence files",
+      "includeLegal": "Legal escalation requested"
+    },
+    "bidForm": {
+      "title": "Place a bid",
+      "successFeePct": "Success fee (%)",
+      "fixedFees": "Fixed fees (optional)",
+      "scope": "Scope",
+      "scopeAmicable": "Amicable only",
+      "scopeLegal": "Amicable + legal",
+      "estimatedDays": "Estimated days (optional)",
+      "notes": "Notes (optional)",
+      "submit": "Submit bid",
+      "myCurrentBid": "Your current bid"
+    },
+    "dashboardPage": {
+      "pendingBanner": "Your agency's onboarding is awaiting approval. Complete or review your licences and jurisdictions.",
+      "pendingBannerLink": "Go to onboarding",
+      "activeCases": "Active cases",
+      "openBids": "Open bids",
+      "wonAwaitingSignature": "Awards awaiting signature",
+      "recoveredTotal": "Total recovered",
+      "recentCases": "Recent cases",
+      "viewOnboarding": "Onboarding",
+      "signNow": "Sign now",
+      "empty": "No cases yet."
+    },
+    "onboarding": {
+      "title": "Agency onboarding",
+      "statusPending": "Your agency is pending approval. You may still review and edit your submission.",
+      "statusApproved": "Your agency is approved. You may still update your licences and jurisdictions.",
+      "licensesTitle": "Licences",
+      "licenseCountry": "Country",
+      "licenseType": "Licence type",
+      "licenseNumber": "Licence number",
+      "licenseValidUntil": "Valid until (optional)",
+      "licenseTypeCollection": "Debt collection",
+      "licenseTypeLawFirm": "Law firm",
+      "licenseTypeCsd": "CSD authorization",
+      "addLicense": "Add licence",
+      "removeLicense": "Remove",
+      "jurisdictionsTitle": "Jurisdictions",
+      "jurisdictionCountry": "Country",
+      "specialties": "Specialties",
+      "languages": "Languages",
+      "capacity": "Capacity",
+      "addJurisdiction": "Add jurisdiction",
+      "removeJurisdiction": "Remove",
+      "submit": "Submit",
+      "specialty": {
+        "b2b": "B2B",
+        "b2c": "B2C",
+        "rent": "Rent",
+        "ecommerce": "E-commerce",
+        "services": "Services",
+        "other": "Other"
+      }
+    },
+    "cases": {
+      "title": "My cases",
+      "empty": "No awarded cases yet.",
+      "reference": "Reference",
+      "debtor": "Debtor",
+      "amount": "Amount",
+      "recovered": "Recovered",
+      "status": "Status",
+      "awardedAt": "Awarded",
+      "open": "Open"
+    },
+    "workspace": {
+      "feePct": "Agreed success fee",
+      "scope": "Scope",
+      "debtorPanel": "Debtor",
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address",
+      "vatId": "VAT ID",
+      "portalLink": "Debtor portal link",
+      "claimFacts": "Claim facts",
+      "evidence": "Evidence",
+      "documents": "Documents",
+      "timeline": "Collection timeline",
+      "logActionTitle": "Log an action",
+      "actionType": "Type",
+      "actionTypeCall": "Call",
+      "actionTypeEmail": "Email",
+      "actionTypeLetter": "Letter",
+      "actionTypeSms": "SMS",
+      "actionTypeNote": "Note",
+      "outcome": "Outcome",
+      "sendToDebtor": "Also send a templated message to the debtor",
+      "template": "Template",
+      "templatePaymentReminder": "Payment reminder",
+      "templateFinalNotice": "Final notice",
+      "submitAction": "Log action",
+      "recordPromiseTitle": "Record a promise to pay",
+      "promiseAmount": "Amount",
+      "promiseDueDate": "Due date",
+      "submitPromise": "Record promise",
+      "recordPaymentTitle": "Record a payment",
+      "paymentAmount": "Amount",
+      "paymentMethod": "Method",
+      "methodBankTransfer": "Bank transfer",
+      "methodCash": "Cash",
+      "methodCard": "Card",
+      "methodOther": "Other",
+      "paymentReceivedAt": "Received at",
+      "submitPayment": "Record payment",
+      "escalateTitle": "Escalate",
+      "escalateLegal": "Escalate to legal",
+      "escalateUnrecoverable": "Mark unrecoverable",
+      "escalateNote": "Note (required)",
+      "confirmEscalate": "Are you sure?",
+      "invoiceTitle": "Commission invoice",
+      "invoiceNumber": "Invoice no.",
+      "invoiceLink": "View invoice",
+      "settledBanner": "This case has been settled — the commission invoice is available below."
+    }
+  },
+  "admin": {
+    "title": "Administration",
+    "queue": "Review queue",
+    "users": "Users",
+    "settings": "Settings",
+    "nav": {
+      "dashboard": "Queues",
+      "validation": "Validation",
+      "vetting": "Agency vetting",
+      "listings": "Listings",
+      "payments": "Payments",
+      "disputes": "Disputes",
+      "analytics": "Analytics",
+      "audit": "Audit log",
+      "config": "Configuration",
+      "gdpr": "GDPR"
+    },
+    "dashboard": {
+      "title": "Queues",
+      "validationQueue": "Pending validation",
+      "vettingQueue": "Pending agency vetting",
+      "openListings": "Open listings",
+      "awardsPending": "Awards pending signature",
+      "disputesOpen": "Open disputes"
+    },
+    "disputes": {
+      "title": "Disputes",
+      "detailTitle": "Dispute detail",
+      "filterAll": "All",
+      "empty": "No disputes match this filter.",
+      "reference": "Case",
+      "type": "Type",
+      "raisedBy": "Raised by",
+      "opened": "Opened",
+      "messages": "Messages",
+      "thread": "Thread",
+      "markUnderReview": "Mark under review",
+      "replyTitle": "Reply",
+      "sendReply": "Send reply",
+      "resolveTitle": "Resolve dispute",
+      "rulingPlaceholder": "Ruling (required)",
+      "confirmResolve": "Resolve this dispute? This cannot be undone.",
+      "resolve": "Resolve",
+      "caseSummary": "Case summary",
+      "viewCase": "View case",
+      "ruling": "Ruling",
+      "role": {
+        "admin": "Admin",
+        "creditor": "Creditor",
+        "agency": "Agency",
+        "debtor": "Debtor"
+      },
+      "disputeType": {
+        "DEBT_DISPUTED": "Debt disputed",
+        "CREDITOR_AGENCY": "Creditor / agency",
+        "PAYMENT": "Payment",
+        "OTHER": "Other"
+      },
+      "disputeStatus": {
+        "OPEN": "Open",
+        "UNDER_REVIEW": "Under review",
+        "RESOLVED": "Resolved",
+        "ESCALATED": "Escalated",
+        "CLOSED": "Closed"
+      },
+      "raisedByRole": {
+        "creditor": "Creditor",
+        "agency": "Agency",
+        "debtor": "Debtor"
+      }
+    },
+    "validation": {
+      "title": "Case validation",
+      "reference": "Reference",
+      "creditor": "Creditor",
+      "debtor": "Debtor",
+      "amount": "Amount",
+      "evidence": "Evidence",
+      "screeningHit": "Screening hit",
+      "submitted": "Submitted",
+      "empty": "No cases pending validation.",
+      "approve": "Approve",
+      "reject": "Reject",
+      "note": "Note (optional for approval, recommended for rejection)"
+    },
+    "vetting": {
+      "title": "Agency vetting",
+      "org": "Organization",
+      "country": "Country",
+      "licenses": "Licenses",
+      "jurisdictions": "Jurisdictions",
+      "approve": "Approve",
+      "suspend": "Suspend",
+      "empty": "No agencies pending vetting."
+    },
+    "listings": {
+      "title": "Listings",
+      "reference": "Reference",
+      "status": "Status",
+      "bids": "Bids",
+      "closesAt": "Closes at",
+      "empty": "No listings yet."
+    },
+    "caseDetail": {
+      "title": "Case detail",
+      "facts": "Facts",
+      "debtor": "Debtor",
+      "evidence": "Evidence",
+      "documents": "Documents",
+      "events": "Timeline",
+      "bids": "Bids",
+      "score": "Score",
+      "fee": "Success fee",
+      "scope": "Scope",
+      "estimatedDays": "Estimated days",
+      "award": "Award",
+      "closeNow": "Close bidding now",
+      "debtorPortal": "Debtor portal link",
+      "approveNote": "Approve",
+      "rejectNote": "Reject",
+      "paymentsTitle": "Payments",
+      "paymentStatus": "Status",
+      "reconcile": "Reconcile",
+      "settlementTitle": "Settlement",
+      "settle": "Settle case",
+      "ledgerTitle": "Commission ledger",
+      "gross": "Gross recovered",
+      "agencyFee": "Agency fee",
+      "platformFee": "Platform fee",
+      "payout": "Creditor payout",
+      "invoiceLink": "View invoice",
+      "closeCase": "Close case"
+    },
+    "payments": {
+      "title": "Payments",
+      "unreconciledTitle": "Unreconciled payments",
+      "unreconciledEmpty": "No payments awaiting reconciliation.",
+      "reference": "Case",
+      "amount": "Amount",
+      "method": "Method",
+      "receivedAt": "Received",
+      "agency": "Agency",
+      "reconcile": "Reconcile",
+      "settlementReadyTitle": "Settlement-ready cases",
+      "settlementReadyEmpty": "No cases ready to settle.",
+      "settle": "Settle",
+      "recentlySettledTitle": "Recently settled",
+      "recentlySettledEmpty": "No cases settled yet.",
+      "gross": "Gross recovered",
+      "agencyFee": "Agency fee",
+      "platformFee": "Platform fee",
+      "payout": "Creditor payout",
+      "invoice": "Invoice"
+    },
+    "analytics": {
+      "title": "Analytics",
+      "byStatus": "Cases by status",
+      "volume": "Volume",
+      "totalVolume": "Total volume",
+      "recoveredVolume": "Recovered",
+      "timing": "Time to award",
+      "avgDaysToAward": "Average days from submission to award",
+      "listingsExpiry": "Listing expiry rate",
+      "listingsExpiryHint": "{expired} of {total} closed, expired or awarded listings expired with no award.",
+      "league": "Agency league table",
+      "leagueEmpty": "No agencies yet.",
+      "agency": "Agency",
+      "awards": "Awards",
+      "rating": "Rating",
+      "successRate": "Success rate",
+      "recovered": "Recovered"
+    },
+    "audit": {
+      "title": "Audit log",
+      "action": "Action",
+      "allActions": "All actions",
+      "entityType": "Entity type",
+      "allEntityTypes": "All entity types",
+      "actorEmail": "Actor email",
+      "from": "From",
+      "to": "To",
+      "filter": "Filter",
+      "empty": "No audit entries match this filter.",
+      "when": "When",
+      "entityId": "Entity ID",
+      "actor": "Actor",
+      "payload": "Payload",
+      "viewPayload": "View payload",
+      "pageOf": "Page {page} of {totalPages}",
+      "prev": "Previous",
+      "next": "Next"
+    },
+    "config": {
+      "title": "Pricing configuration",
+      "empty": "No pricing rules yet.",
+      "country": "Country",
+      "band": "Amount band",
+      "minAmount": "Minimum amount",
+      "maxAmount": "Maximum amount (optional)",
+      "maxAgeDays": "Max case age (days)",
+      "platformPct": "Platform fee (%)",
+      "active": "Active",
+      "activeYes": "Active",
+      "activeNo": "Inactive",
+      "deactivate": "Deactivate",
+      "addRule": "Add rule"
+    },
+    "gdpr": {
+      "title": "GDPR tools",
+      "subjectTitle": "Data subject",
+      "emailLabel": "Email",
+      "lookupButton": "Look up",
+      "exportButton": "Export data (download)",
+      "eraseButton": "Erase subject",
+      "eraseConfirm": "Erase this subject's personal data? This cannot be undone.",
+      "eraseHint": "Blocked while any linked case is not CLOSED or CANCELLED.",
+      "eraseSuccess": "The subject's personal data has been erased.",
+      "eraseBlocked": "Erasure was blocked by a legal hold.",
+      "retentionTitle": "Retention purge",
+      "retentionHint": "Anonymizes debtor data for cases CLOSED for more than 3 years.",
+      "purgeButton": "Run retention purge",
+      "purgeConfirm": "Run the retention purge now?",
+      "purgeResult": "Purged {count} case(s)."
+    }
+  },
+  "debtor": {
+    "title": "Debtor portal",
+    "payNow": "Pay now",
+    "dispute": "Dispute this case",
+    "amountDue": "Amount due",
+    "invalidToken": {
+      "title": "This link is no longer valid",
+      "body": "The link you followed is invalid or has expired. Please contact the collection agency or your creditor for a new one."
+    },
+    "status": {
+      "open": "Open",
+      "paid": "Paid",
+      "disputed": "In dispute"
+    },
+    "claim": {
+      "creditor": "Creditor",
+      "reference": "Reference",
+      "amount": "Original amount",
+      "totalPaid": "Paid so far",
+      "remaining": "Remaining balance",
+      "dueDate": "Due date",
+      "description": "Description"
+    },
+    "payments": {
+      "title": "Payment history",
+      "empty": "No payments received yet.",
+      "date": "Date",
+      "amount": "Amount",
+      "method": "Method"
+    },
+    "actions": {
+      "pay": "Pay",
+      "requestSettlement": "Request installment plan",
+      "continueSigning": "Continue signing",
+      "dispute": "Dispute this debt"
+    },
+    "agency": {
+      "title": "Collection agency contact",
+      "name": "Name",
+      "email": "Email"
+    },
+    "banners": {
+      "paid": "Your payment has been received. Thank you.",
+      "disputed": "Your dispute has been submitted. Someone will contact you shortly."
+    },
+    "pay": {
+      "title": "Make a payment",
+      "amountLabel": "Amount",
+      "submit": "Continue to payment",
+      "errorTooHigh": "The amount cannot exceed the remaining balance.",
+      "errorInvalid": "Please enter a valid amount."
+    },
+    "payConfirm": {
+      "title": "Confirm payment (sandbox)",
+      "amountLabel": "You are about to pay",
+      "payButton": "Pay now (sandbox)",
+      "backLink": "Back to portal"
+    },
+    "disputeForm": {
+      "title": "Dispute this debt",
+      "bodyLabel": "Tell us why you dispute this debt",
+      "submit": "Submit dispute"
+    },
+    "settle": {
+      "title": "Request an installment plan",
+      "installmentsLabel": "Number of installments (2-24)",
+      "monthlyAmountLabel": "Monthly amount",
+      "hint": "The total of all installments must cover the remaining balance.",
+      "submit": "Request plan",
+      "errorTooLow": "The installments do not cover the remaining balance.",
+      "pendingNotice": "A settlement plan is already awaiting signature."
+    }
+  },
+  "notify": {
+    "title": "Notifications",
+    "newCase": "New case",
+    "newBid": "New bid",
+    "statusChanged": "Status changed",
+    "empty": "You have no notifications yet.",
+    "markAllRead": "Mark all as read",
+    "templates": {
+      "listing.published": "Case {reference} was published to the marketplace.",
+      "case.rejected": "Case {reference} was rejected during validation.",
+      "listing.expired": "The listing for case {reference} expired with no bids.",
+      "award.won": "You won the bid for case {reference}.",
+      "award.lost": "Case {reference} was awarded to another agency.",
+      "case.awarded": "Case {reference} has been awarded to a collection agency.",
+      "agency.approved": "Your agency has been approved.",
+      "agency.suspended": "Your agency has been suspended.",
+      "agency.pending_vetting": "Agency {name} is awaiting vetting.",
+      "payment.received": "A payment of {amount} {currency} was received for case {reference}.",
+      "dispute.raised": "A dispute was raised on case {reference}.",
+      "dispute.message_added": "New message in the dispute for case {reference}.",
+      "dispute.resolved": "The dispute for case {reference} was resolved: {ruling}",
+      "settlement.requested": "An installment plan was requested for case {reference}: {installments} x {monthlyAmount}.",
+      "settlement.signed": "The settlement for case {reference} has been signed.",
+      "case.settled": "Case {reference} has been settled. Payout: {creditorPayout}.",
+      "case.legal_escalation": "Case {reference} was escalated to legal action.",
+      "case.unrecoverable": "Case {reference} was marked unrecoverable.",
+      "invoice.issued": "Invoice {invoiceNumber} was issued for case {reference} ({total}).",
+      "case.pending_validation": "Case {reference} is awaiting validation.",
+      "debtor.notice": "A new case notice was issued to the debtor.",
+      "debtor.payment_reminder": "A payment reminder was sent to the debtor.",
+      "debtor.final_notice": "A final notice was sent to the debtor."
+    }
+  },
+  "sign": {
+    "title": "Sign document",
+    "signers": "Signers",
+    "signedAs": "Signed",
+    "signButton": "Sign with QES (sandbox)",
+    "allSigned": "All parties have signed this document.",
+    "viewSigned": "View signed document",
+    "notYourTurn": "Waiting for other signers."
+  },
+  "privacy": {
+    "title": "Privacy notice",
+    "intro": "This notice explains how we process personal data on this platform. It is a placeholder pending final review by counsel and will be updated before general availability.",
+    "controller": {
+      "title": "Data controller",
+      "body": "[To be confirmed by counsel: legal entity name, registered address, registration number, and contact details of the data controller.]"
+    },
+    "purposes": {
+      "title": "Purposes of processing",
+      "body": "We process personal data to operate the marketplace: creating accounts and organizations, verifying identity (KYC), submitting and managing collection cases, matching cases with collection agencies, processing signatures and payments, communicating with debtors, and handling disputes and support requests."
+    },
+    "legalBases": {
+      "title": "Legal bases",
+      "body": "Processing relies on: performance of a contract with you (account and case management), legitimate interest (marketplace matching, fraud prevention, service improvement), legal obligation (KYC/AML, accounting, retention), and consent where specifically requested."
+    },
+    "recipients": {
+      "title": "Recipients",
+      "body": "Collection agencies that are awarded a case receive the case and debtor data necessary to perform the collection mandate. Agencies act as separate data controllers (or processors, depending on the mandate) for that data — the precise allocation of controller/processor roles is [to be confirmed by counsel]. We also share data with signature and payment service providers, and with authorities where legally required."
+    },
+    "retention": {
+      "title": "Retention",
+      "body": "Case and financial records are retained for as long as the case is active and for 3 years after closure for legal and accounting purposes, after which debtor personal data is anonymized. You may request erasure earlier where no legal hold applies."
+    },
+    "rights": {
+      "title": "Your rights",
+      "body": "You have the right to access, rectify, erase, restrict, and port your personal data, and to object to certain processing. Contact us using the details below to exercise these rights."
+    },
+    "complaints": {
+      "title": "Right to complain",
+      "body": "If you believe your data has been processed unlawfully, you may lodge a complaint with the supervisory authority: in the Czech Republic, the Office for Personal Data Protection (Úřad pro ochranu osobních údajů, ÚOOÚ, www.uoou.cz); in Slovakia, the Office for Personal Data Protection of the Slovak Republic (Úrad na ochranu osobných údajov SR, ÚOOÚ SR, www.dataprotection.gov.sk)."
+    },
+    "contact": {
+      "title": "Contact",
+      "body": "[To be confirmed by counsel: contact email/address for data protection enquiries and, if applicable, the Data Protection Officer.]"
+    }
+  },
+  "comms": {
+    "payment_reminder": {
+      "subject": "Payment reminder — {caseReference}",
+      "body": "Dear Sir or Madam,\n\nWe would like to kindly remind you of the outstanding amount of {amount} owed to {creditorName} under case {caseReference}. We would be grateful if you could settle this amount at your earliest convenience, or contact us to arrange a suitable payment plan.\n\nThank you for your prompt attention to this matter.\n\nKind regards"
+    },
+    "final_notice": {
+      "subject": "Final notice — {caseReference}",
+      "body": "Dear Sir or Madam,\n\nThis is a final notice regarding the outstanding amount of {amount} owed to {creditorName} under case {caseReference}. Should payment not be received within the stated period, we may be obliged to pursue further collection measures, including legal action.\n\nWe encourage you to settle the amount promptly or to contact us without delay.\n\nKind regards"
+    }
+  }
+}

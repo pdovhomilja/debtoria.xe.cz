@@ -30,7 +30,8 @@ body {
   outline-offset: 2px;
 }
 
-.hl a {
+/* zero specificity so component classes (.hl-pill--blue, .hl-bar-cta, .hl-tile) can set their own color */
+:where(.hl a) {
   color: inherit;
   text-decoration: none;
 }

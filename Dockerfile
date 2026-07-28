@@ -20,6 +20,13 @@ RUN DATABASE_URL="postgresql://build:build@localhost:5432/build" \
     MINIO_BUCKET="build" \
     APP_URL="http://localhost:3000" \
     pnpm build
+# Bundle the demo seed so it can run in the runtime image (which has no
+# tsx/devDeps). Packages left external ship in the standalone node_modules.
+# Only @prisma/client stays external (top-level in standalone, has a native
+# engine); pure-JS deps (bcryptjs, minio, zod, …) are bundled in.
+RUN pnpm exec esbuild prisma/seed.ts --bundle --platform=node --format=cjs \
+    --external:@prisma/client --external:.prisma \
+    --outfile=/app/seed.cjs
 
 FROM node:22-slim AS runner
 RUN apt-get update && apt-get install -y --no-install-recommends openssl ca-certificates && rm -rf /var/lib/apt/lists/*
@@ -31,5 +38,7 @@ COPY --from=build /app/.next/standalone ./
 COPY --from=build /app/.next/static ./.next/static
 COPY --from=build /app/public ./public
 COPY --from=build /app/prisma ./prisma
+# One-time demo data: docker exec <container> node seed.cjs
+COPY --from=build /app/seed.cjs ./seed.cjs
 EXPOSE 3000
 CMD ["sh", "-c", "prisma migrate deploy && exec node server.js"]

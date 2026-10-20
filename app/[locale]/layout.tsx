@@ -1,6 +1,9 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Inter, Outfit, JetBrains_Mono } from "next/font/google";
+import { getDictionary } from "@/lib/i18n/dictionaries";
 import { locales, isLocale } from "@/lib/i18n/locales";
+import { t } from "@/lib/i18n/t";
 import "../globals.css";
 
 const inter = Inter({
@@ -21,6 +24,19 @@ const jetbrainsMono = JetBrains_Mono({
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({
+  params,
+}: LayoutProps<"/[locale]">): Promise<Metadata> {
+  const { locale } = await params;
+  if (!isLocale(locale)) return {};
+
+  const dict = await getDictionary(locale);
+  return {
+    title: `${t(dict, "common.appName", {}, locale)} — ${t(dict, "landing.title", {}, locale)}`,
+    description: t(dict, "landing.subtitle", {}, locale),
+  };
 }
 
 export default async function LocaleLayout({
